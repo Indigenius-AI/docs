@@ -22,14 +22,14 @@
             ]
           },
           {
-            "group": "Essentials",
+            "group": "AgentPro",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "AgentPro/markdown",
+              "AgentPro/code",
+              "AgentPro/images",
+              "AgentPro/settings",
+              "AgentPro/navigation",
+              "AgentPro/reusable-snippets"
             ]
           }
         ]
