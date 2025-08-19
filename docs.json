@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  
   "name": "Indigenius AI",
   "colors": {
-   "primary": "#F79320",
-   "light": "#FFEDD5", 
-   "dark": "#C2410C"   
+    "primary": "#F79320",
+    "light": "#FFEDD5", 
+    "dark": "#C2410C"
   },
   "favicon": "/logo/indigenious-icon.png",
   "navigation": {
