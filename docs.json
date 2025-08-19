@@ -3,11 +3,11 @@
   "theme": "mint",
   "name": "Indigenius AI",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+   "primary": "#F79320",
+   "light": "#FFEDD5", 
+   "dark": "#C2410C"   
   },
-  "favicon": "/Indigeniuslogoblack.png",
+  "favicon": "/logo/indigenious-icon.svg",
   "navigation": {
     "tabs": [
       {
@@ -76,8 +76,8 @@
     }
   },
   "logo": {
-    "light": "/logo/Indigeniuslogocolor.png",
-    "dark": "/logo/Indigeniuslogocolor.png"
+    "light": "/logo/dark-logo.png",
+    "dark": "/logo/dark-logo.png"
   },
   "navbar": {
     "links": [
