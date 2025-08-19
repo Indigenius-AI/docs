@@ -1,0 +1,436 @@
+---
+title: "Indigenius AI Widget"
+description: "Indigenius Widget is a powerful SDK for integrating AI Agent call widget into your web application, offering functionalities to easily initiate and manage calls with your AI-powered customer service agents."
+---
+
+## **Installation**
+
+To use the SDK in your project, you can either:
+
+1. **Install via npm** (recommended for modern JavaScript applications)
+
+   ```
+   npm install indigenius-ai-widget
+   ```
+2. **Include the UMD build via CDN** (for legacy support)
+
+   ```
+   <script src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget@1.0.0/dist/sdk.umd.js"></script>
+   ```
+3. **Include the official url** (for legacy support)
+
+   ```
+   <script
+     type="module"
+     src="https://widget.indigenius.ai/v1/index.js"
+   ></script>
+   ```
+
+---
+
+## **Quick Start**
+
+### **HTML Integration**
+
+You can integrate the widget into your HTML file with the following steps:
+
+1. Add the `<indigenius-convai>` component to your HTML body to display the widget.
+2. Include the SDK script (either from a CDN or local build).
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Webapp</title>
+  </head>
+  <body>
+    <h1>Welcome to my random HTML site...</h1>
+
+    <!-- Add the widget component -->
+    <indigenius-convai agent-id="your-agent-id"></indigenius-convai>
+
+    <!-- Add the SDK script (local or CDN) -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget@1.0.0/dist/sdk.umd.js"
+    ></script>
+
+    <script defer>
+      // Initialize event listeners
+      window.addEventListener("load", () => {
+        widget.on("dialing", () => {
+          console.log("Dialing detected");
+        });
+        widget.on("connected", () => {
+          console.log("Connected detected");
+        });
+        widget.on("ended", () => {
+          console.log("Ended detected");
+        });
+        widget.on("error", (err) => {
+          console.error("Error:", err);
+        });
+      });
+    </script>
+  </body>
+</html>
+```
+
+## **Framework Usage**
+
+### **Widget Options (**`CdialWidget`**Constructor Payload)** 
+
+When creating a new `CdialWidget` instance, you pass an options object. Here are the available options:
+
+| **Option** | **Type**  | **Required** | **Default** | **Description**                                                                                                            |
+| :--------- | :-------- | :----------- | :---------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `agentId`  | `string`  | Yes          | —           | The unique Agent ID for your AI agent.                                                                                     |
+| `mountUI`  | `boolean` | No           | `false`     | If `true`, the widget's floating UI is auto-mounted. If `false`, no UI is rendered and you control everything via the API. |
+
+**Example:**
+
+```
+const widget = new CdialWidget({
+  agentId: 'your-agent-id',
+  mountUI: true, // Set to false to use your own UI
+});
+```
+
+### **Initialize the Widget**
+
+The `init` method is used to initialize the widget with your options. You must provide a valid `agentId`. If you set `mountUI: true`, the widget's floating UI will appear automatically. If `mountUI: false`, you can build your own UI and control the widget programmatically.
+
+```
+import { CdialWidget } from "indigenius-ai-widget";
+
+const widget = new CdialWidget({
+  agentId: "your-agent-id",
+  mountUI: true, // or false for custom UI
+});
+
+widget.init().then(() => {
+  console.log("Widget initialized");
+});
+```
+
+### **Toggle Call**
+
+Use `toggleCall` to start or end a call. This method toggles the widget between the "call in progress" state and the "idle" state.
+
+```
+widget.toggleCall(); // Starts or ends the call based on the current state
+```
+
+You can listen to events related to call state changes.
+
+### **Event Listeners**
+
+The SDK supports various events that you can listen to for user interaction or state changes.
+
+#### **Example: Listening to Call Start and End Events**
+
+```
+// Listen to call started
+widget.on("callStarted", () => {
+  console.log("Call has started");
+});
+
+// Listen to call ended
+widget.on("callEnded", () => {
+  console.log("Call has ended");
+});
+```
+
+### **Destroy the Widget**
+
+To clean up and remove the widget from the page, use the `destroy` method. This is useful if you need to remove the widget entirely after use.
+
+```
+widget.destroy();
+```
+
+This method will remove all elements created by the widget and stop any ongoing call operations.
+
+---
+
+## **Full Example**
+
+Here’s a complete example of how to use the widget:
+
+---
+
+## **Modern Framework Integration**
+
+You can use the widget in React, Vue, or Angular. The `mountUI` option gives you full control over whether the floating widget UI appears, or if you want to build your own UI and use the widget's API.
+
+---
+
+### **React Example (**[**Live Demo**](https://stackblitz.com/edit/indigenius-ai-widget-react-demo)**)**
+
+```
+import './App.css';
+import { useEffect, useRef, useState } from 'react';
+import { CdialWidget } from 'indigenius-ai-widget';
+
+function App() {
+  const widgetRef = useRef(null);
+  const [callState, setCallState] = useState('idle');
+  const [widgetReady, setWidgetReady] = useState(false);
+
+  useEffect(() => {
+    // Use mountUI: false to control the call from your React button only
+    const widget = new CdialWidget({
+      agentId: 'your-agent-id',
+      mountUI: false, // Only your React button will control the call
+    });
+    widgetRef.current = widget;
+
+    widget.on('dialing', () => setCallState('dialing'));
+    widget.on('connected', () => setCallState('connected'));
+    widget.on('ended', () => setCallState('ended'));
+    widget.on('error', console.error);
+
+    widget.init().then(() => setWidgetReady(true));
+
+    return () => widget.destroy();
+  }, []);
+
+  const toggleCall = () => widgetRef.current?.toggleCall();
+
+  return (
+    <div>
+      <h1>Cdial Widget Demo</h1>
+      <button onClick={toggleCall} disabled={!widgetReady}>
+        {callState === 'connected'
+          ? 'End Call'
+          : callState === 'dialing'
+          ? 'Dialing...'
+          : 'Start Call'}
+      </button>
+      {!widgetReady && <p>Loading widget...</p>}
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+### **Vue Example (Live Demo: N/A)**
+
+```
+<template>
+  <div>
+    <h1>Cdial Widget Demo (Vue)</h1>
+    <button @click="toggleCall">{{ buttonLabel }}</button>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+import { CdialWidget } from 'indigenius-ai-widget';
+
+const callState = ref('idle');
+let widget = null;
+
+onMounted(() => {
+  widget = new CdialWidget({
+    agentId: 'your-agent-id',
+    mountUI: true, // Set to false to use your own UI
+  });
+
+  widget.on('dialing', () => callState.value = 'dialing');
+  widget.on('connected', () => callState.value = 'connected');
+  widget.on('ended', () => callState.value = 'ended');
+  widget.on('error', console.error);
+
+  widget.init();
+});
+
+onBeforeUnmount(() => {
+  widget?.destroy();
+});
+
+const toggleCall = () => widget?.toggleCall();
+
+const buttonLabel = computed(() =>
+  callState.value === 'connected' ? 'End Call' : 'Start Call'
+);
+</script>
+```
+
+---
+
+### **Angular Example (Live Demo: N/A)**
+
+```
+// app.component.ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CdialWidget } from 'indigenius-ai-widget';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h1>Cdial Widget Demo (Angular)</h1>
+    <button (click)="toggleCall()">{{ buttonLabel }}</button>
+  `
+})
+export class AppComponent implements OnInit, OnDestroy {
+  callState = 'idle';
+  widget: any;
+
+  get buttonLabel() {
+    return this.callState === 'connected' ? 'End Call' : 'Start Call';
+  }
+
+  ngOnInit() {
+    this.widget = new CdialWidget({
+      agentId: 'your-agent-id',
+      mountUI: true, // Set to false to use your own UI
+    });
+
+    this.widget.on('dialing', () => this.callState = 'dialing');
+    this.widget.on('connected', () => this.callState = 'connected');
+    this.widget.on('ended', () => this.callState = 'ended');
+    this.widget.on('error', console.error);
+
+    this.widget.init();
+  }
+
+  ngOnDestroy() {
+    this.widget?.destroy();
+  }
+
+  toggleCall() {
+    this.widget?.toggleCall();
+  }
+}
+```
+
+---
+
+### **Summary**
+
+- **mountUI: true** — Widget’s floating UI is auto-mounted (recommended for most use cases).
+- **mountUI: false** — No UI is rendered; you control everything via the widget API (advanced/custom UI).
+- The widget is fully self-contained and will not create duplicate UIs, even if instantiated multiple times in a framework.
+- All public methods (`init`, `destroy`, `toggleCall`, `on`, etc.) are available on the widget instance.
+
+---
+
+## **Methods**
+
+### `init()`
+
+Initializes the widget with the given `agentId` and sets up the UI.
+
+**Returns**: `Promise<void>`
+
+### `toggleCall()`
+
+Starts or ends a call based on the current widget state.
+
+**Returns**: `void`
+
+### `destroy()`
+
+Destroys the widget, removing all associated elements and cleaning up resources.
+
+**Returns**: `void`
+
+---
+
+## **Events**
+
+The widget emits several events that you can listen to for customizing your application's behavior. Below is a list of available events, their descriptions, and usage examples.
+
+### **📡 **`dialing`
+
+Emitted when the widget starts attempting to connect to the AI agent.
+
+**Example:**
+
+```
+myCdialWidget.on("dialing", () => {
+  console.log("Dialing detected");
+});
+```
+
+---
+
+### **🔗 **`connected`
+
+Emitted when the connection to the AI agent is successfully established.
+
+**Example:**
+
+```
+myCdialWidget.on("connected", () => {
+  console.log("Connected detected");
+});
+```
+
+---
+
+### **❌ **`ended`
+
+Emitted when the call has ended or was terminated.
+
+**Example:**
+
+```
+myCdialWidget.on("ended", () => {
+  console.log("Ended detected");
+});
+```
+
+---
+
+### **⚠️ **`error`
+
+Emitted if there is an internal error during the operation of the widget.
+
+**Payload:** `err` (Error or string) – details about the error that occurred.
+
+**Example:**
+
+```
+myCdialWidget.on("error", (err) => {
+  console.error("Error:", err);
+});
+```
+
+---
+
+You can register these event listeners after the widget has loaded:
+
+```
+<script defer>
+  window.addEventListener("load", () => {
+    myCdialWidget.on("dialing", () => {
+      console.log("Dialing detected");
+    });
+
+    myCdialWidget.on("connected", () => {
+      console.log("Connected detected");
+    });
+
+    myCdialWidget.on("ended", () => {
+      console.log("Ended detected");
+    });
+
+    myCdialWidget.on("error", (err) => {
+      console.error("Error:", err);
+    });
+  });
+</script>
+```
+
+---
+
+## **License**
+
+This SDK is released under the MIT License. See LICENSE for more details.
