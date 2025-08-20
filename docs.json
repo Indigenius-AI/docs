@@ -89,11 +89,11 @@
   },
   "footer": {
     "socials": {
+      "website": "https://indigenius.ai/",
       "facebook": "https://m.facebook.com/CdialAI",
       "x-twitter": "https://twitter.com/cdial_ai",
       "youtube": "https://www.youtube.com/@CDIAL_AI",
-      "instagram": "https://www.instagram.com/indigenius.ai/",
-      "website": "https://indigenius.ai/"
+      "instagram": "https://www.instagram.com/indigenius.ai/"
     }
   }
 }
