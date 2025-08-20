@@ -4,7 +4,7 @@
   "name": "Indigenius AI",
   "colors": {
     "primary": "#F79320",
-    "light": "#FFEDD5", 
+    "light": "#FFEDD5",
     "dark": "#F79320"
   },
   "favicon": "/logo/indigenious-icon.png",
@@ -55,21 +55,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      
-        {
-          "anchor": "Community",
-          "href": "https://discord.com/channels/1326841048995074129/indigenius.aibycdialcd_99864",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://indigenius.ai/blog",
-          "icon": "cdial blog"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/logo-primary.svg",
@@ -77,6 +63,14 @@
   },
   "navbar": {
     "links": [
+      {
+        "label": "Community",
+        "href": "https://discord.com/channels/1326841048995074129/indigenius.aibycdialcd_99864"
+      },
+      {
+        "label": "Blog",
+        "href": "https://indigenius.ai/blog"
+      },
       {
         "label": "Support",
         "href": "mailto:support@indigenius.ai"
@@ -96,8 +90,7 @@
       "facebook": "https://m.facebook.com/CdialAI",
       "youtube": "https://www.youtube.com/@CDIAL_AI",
       "instagram": "https://www.instagram.com/indigenius.ai",
-      "tiktok": "https://www.tiktok.com/@indigenius.ai",
-      
+      "website": "https://www.tiktok.com/@indigenius.ai"
     }
   }
 }
