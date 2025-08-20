@@ -1,36 +1,40 @@
 ---
-title: Web Calling
-description: Make a web call to your Indigenius agent from the browser.
+title: Web Call
+description: Learn to make a web call to your agent from a browser.
 ---
 
-# Web Calling
+# Web Call
 
-Easily integrate **Indigenius Web SDK** or use the **Indigenius Dashboard** to enable browser-based calling.
-
----
-
-<CardGroup cols={2}>
-  <Card title="Indigenius Web" icon="code" iconType="solid" color="#F79320" iconSize={40}>
-    Add Indigenius agent to your web application.
-  </Card>
-  <Card title="Custom SDK" icon="terminal" iconType="solid" color="#1E40AF" iconSize={40}>
-    Build your own UI with full control over the SDK.
-  </Card>
-</CardGroup>
+Learn to make a **web call** to your Indigenius agent directly from the browser.
 
 ---
 
-## Step 1 — Environment Setup
+## Overview
 
-Go to **Settings → Environment Variables** in your app and add your Public API key:
+This guide shows you how to make a web call to your **Indigenius agent**.  
+You can create an assistant using either:
+
+- The **Web SDK**  
+- The **Indigenius Dashboard**
+
+---
+
+## Environment Setup (v0)
+
+1. Go to **Settings → Environment Variables** in your app.  
+2. Create a new environment variable:  
 
 ```bash
 NEXT_PUBLIC_INDIGENIUS_API_KEY=your-public-api-key
 ````
 
+3. Add your **public API key** from the dashboard.
+
 ---
 
-## Step 2 — Installation
+## Installation
+
+Install the SDK with your preferred package manager:
 
 <CodeGroup>
 ```bash npm
@@ -43,23 +47,17 @@ yarn add indigenius-ai-widget
 
 </CodeGroup>
 
-Or via CDN:
+Or use the official CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget@1.0.0/dist/sdk.umd.js"></script>
-```
-
-Or official hosted script:
-
-```html
-<script type="module" src="https://widget.indigenius.ai/v1/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget@latest/dist/sdk.umd.js"></script>
 ```
 
 ---
 
-## Step 3 — Quick Start
+## Quick Start
 
-\<Tabs items={\["HTML", "React", "Vue", "Angular"]}>
+\<Tabs items={\["HTML", "React"]}>
 
 <TabItem value="HTML">
 
@@ -103,69 +101,11 @@ export default function App() {
 
 </TabItem>
 
-<TabItem value="Vue">
-
-```vue
-<template>
-  <div id="app">Your Vue App</div>
-</template>
-
-<script setup>
-import { onMounted, onBeforeUnmount } from "vue";
-import { CdialWidget } from "indigenius-ai-widget";
-
-let widget;
-
-onMounted(() => {
-  widget = new CdialWidget({
-    agentId: "your-agent-id",
-    mountUI: true,
-  });
-  widget.init();
-});
-
-onBeforeUnmount(() => {
-  widget.destroy();
-});
-</script>
-```
-
-</TabItem>
-
-<TabItem value="Angular">
-
-```ts
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { CdialWidget } from "indigenius-ai-widget";
-
-@Component({
-  selector: "app-root",
-  template: "<div>Your Angular App</div>",
-})
-export class AppComponent implements OnInit, OnDestroy {
-  widget: any;
-
-  ngOnInit() {
-    this.widget = new CdialWidget({
-      agentId: "your-agent-id",
-      mountUI: true,
-    });
-    this.widget.init();
-  }
-
-  ngOnDestroy() {
-    this.widget.destroy();
-  }
-}
-```
-
-</TabItem>
-
 </Tabs>
 
 ---
 
-## Step 4 — Call Control
+## Call Control
 
 Start or end a call programmatically:
 
@@ -175,28 +115,41 @@ widget.toggleCall();
 
 ---
 
-## Step 5 — Event Listeners
+## Event Listeners
 
 ```js
 widget.on("dialing", () => console.log("Dialing..."));
 widget.on("connected", () => console.log("Connected"));
-widget.on("ended", () => console.log("Ended"));
+widget.on("ended", () => console.log("Call ended"));
 widget.on("error", (err) => console.error("Error:", err));
 ```
 
 ---
 
-## Step 6 — Destroy
+## Widget Options
 
-```js
-widget.destroy();
-```
+| Option    | Type      | Required | Default | Description                                                                                             |
+| --------- | --------- | -------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `agentId` | `string`  | ✅ Yes    | —       | The unique Agent ID for your AI agent.                                                                  |
+| `mountUI` | `boolean` | ❌ No     | `false` | If `true`, auto-mounts the floating UI. If `false`, no UI is shown and you control it programmatically. |
+
+---
+
+## Available Events
+
+| Event       | Payload | Description                                                       |
+| ----------- | ------- | ----------------------------------------------------------------- |
+| `dialing`   | `void`  | Fired when the widget is trying to connect to the AI agent.       |
+| `connected` | `void`  | Fired once the connection with the AI agent is successfully made. |
+| `ended`     | `void`  | Fired when the call ends or is terminated.                        |
+| `error`     | `Error` | Fired when an error occurs in the widget.                         |
 
 ---
 
 <CardGroup cols={1}>
-  <Card title="Tips" icon="lightbulb" iconType="solid" color="#FACC15" iconSize={40}>
-    ✅ Use <code>mountUI: true</code> for the floating call widget.  
-    ✅ Use <code>mountUI: false</code> for full custom UI control.
+  <Card title="Tip" icon="lightbulb" iconType="solid" color="#FACC15" iconSize={40}>
+    ✅ Use <code>mountUI: true</code> for quick integration.  
+    ✅ Use <code>mountUI: false</code> for advanced custom UI.  
+    ✅ Listen to events for more granular call control.
   </Card>
 </CardGroup>
