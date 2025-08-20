@@ -30,6 +30,7 @@
               "AgentPro/settings",
               "AgentPro/navigation",
               "AgentPro/reusable-snippets"
+              "AgentPro/widget"
             ]
           }
         ]
