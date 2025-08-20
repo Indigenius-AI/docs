@@ -1,6 +1,6 @@
 ---
-title: Web Call
-description: Learn to make a web call to your agent from a browser.
+title: "Web Call"
+description: "Learn to make a web call to your agent from a browser."
 ---
 
 # Web Call
@@ -11,22 +11,22 @@ Learn to make a **web call** to your Indigenius agent directly from the browser.
 
 ## Overview
 
-This guide shows you how to make a web call to your **Indigenius agent**.  
+This guide shows you how to make a web call to your **Indigenius agent**.\
 You can create an assistant using either:
 
-- The **Web SDK**  
+- The **Web SDK**
 - The **Indigenius Dashboard**
 
 ---
 
 ## Environment Setup (v0)
 
-1. Go to **Settings → Environment Variables** in your app.  
-2. Create a new environment variable:  
+1. Go to **Settings → Environment Variables** in your app.
+2. Create a new environment variable:
 
 ```bash copy
 NEXT_PUBLIC_INDIGENIUS_API_KEY=your-public-api-key
-````
+```
 
 3. Add your **public API key** from the dashboard.
 
@@ -37,9 +37,11 @@ NEXT_PUBLIC_INDIGENIUS_API_KEY=your-public-api-key
 Install the SDK with your preferred package manager:
 
 <CodeGroup>
+
 ```bash npm
 npm install indigenius-ai-widget
 ```
+
 
 ```bash yarn
 yarn add indigenius-ai-widget
@@ -61,45 +63,38 @@ Or use the official CDN:
   <Tab title="HTML">
     ```html copy
     <indigenius-convai agent-id="your-agent-id"></indigenius-convai>
-
-````
-<script type="module">
-  import { CdialWidget } from "indigenius-ai-widget";
-
-  const widget = new CdialWidget({
-    agentId: "your-agent-id",
-    mountUI: true,
-  });
-
-  widget.init();
-</script>
-```
-````
-
+    
+    <script type="module">
+      import { CdialWidget } from "indigenius-ai-widget";
+    
+      const widget = new CdialWidget({
+        agentId: "your-agent-id",
+        mountUI: true,
+      });
+    
+      widget.init();
+    </script>
+    ```
   </Tab>
-
-  <Tab title="React" icon="react">
+  <Tab title="React">
     ```tsx copy
     import { useEffect } from "react";
     import { CdialWidget } from "indigenius-ai-widget";
-
-````
-export default function App() {
-  useEffect(() => {
-    const widget = new CdialWidget({
-      agentId: "your-agent-id",
-      mountUI: true,
-    });
-    widget.init();
-
-    return () => widget.destroy();
-  }, []);
-
-  return <div>Your React App</div>;
-}
-```
-````
-
+    
+    export default function App() {
+      useEffect(() => {
+        const widget = new CdialWidget({
+          agentId: "your-agent-id",
+          mountUI: true,
+        });
+        widget.init();
+    
+        return () => widget.destroy();
+      }, []);
+    
+      return <div>Your React App</div>;
+    }
+    ```
   </Tab>
 </Tabs>
 
@@ -147,9 +142,15 @@ widget.on("error", (err) => console.error("Error:", err));
 ---
 
 <CardGroup cols={1}>
-  <Card title="Tip" icon="lightbulb" iconType="solid" color="#FACC15" iconSize={40}>
-    ✅ Use <code>mountUI: true</code> for quick integration.  
-    ✅ Use <code>mountUI: false</code> for advanced custom UI.  
+  <Card title="Tip" icon="lightbulb" iconType="solid" color="#FACC15">
+    ✅ Use <code>
+    mountUI: true</code>
+
+     for quick integration.\
+    ✅ Use <code>
+    mountUI: false</code>
+
+     for advanced custom UI.\
     ✅ Listen to events for more granular call control.
   </Card>
 </CardGroup>
