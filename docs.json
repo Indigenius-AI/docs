@@ -26,7 +26,8 @@
             "pages": [
               "AgentPro/welcome",
               "AgentPro/Quickstart",
-              "AgentPro/Webcalling"
+              "AgentPro/Webcalling",
+              "AgentPro/WebCalling"
             ]
           }
         ]
@@ -80,7 +81,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@indigenius.ai"
       }
     ],
     "primary": {
