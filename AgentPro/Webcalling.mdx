@@ -24,7 +24,7 @@ You can create an assistant using either:
 1. Go to **Settings → Environment Variables** in your app.  
 2. Create a new environment variable:  
 
-```bash
+```bash copy
 NEXT_PUBLIC_INDIGENIUS_API_KEY=your-public-api-key
 ````
 
@@ -49,7 +49,7 @@ yarn add indigenius-ai-widget
 
 Or use the official CDN:
 
-```html
+```html copy
 <script src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget@latest/dist/sdk.umd.js"></script>
 ```
 
@@ -57,13 +57,12 @@ Or use the official CDN:
 
 ## Quick Start
 
-\<Tabs items={\["HTML", "React"]}>
+<Tabs>
+  <Tab title="HTML">
+    ```html copy
+    <indigenius-convai agent-id="your-agent-id"></indigenius-convai>
 
-<TabItem value="HTML">
-
-```html
-<indigenius-convai agent-id="your-agent-id"></indigenius-convai>
-
+````
 <script type="module">
   import { CdialWidget } from "indigenius-ai-widget";
 
@@ -75,15 +74,16 @@ Or use the official CDN:
   widget.init();
 </script>
 ```
+````
 
-</TabItem>
+  </Tab>
 
-<TabItem value="React">
+  <Tab title="React" icon="react">
+    ```tsx copy
+    import { useEffect } from "react";
+    import { CdialWidget } from "indigenius-ai-widget";
 
-```tsx
-import { useEffect } from "react";
-import { CdialWidget } from "indigenius-ai-widget";
-
+````
 export default function App() {
   useEffect(() => {
     const widget = new CdialWidget({
@@ -98,9 +98,9 @@ export default function App() {
   return <div>Your React App</div>;
 }
 ```
+````
 
-</TabItem>
-
+  </Tab>
 </Tabs>
 
 ---
@@ -109,7 +109,7 @@ export default function App() {
 
 Start or end a call programmatically:
 
-```js
+```js copy
 widget.toggleCall();
 ```
 
@@ -117,7 +117,7 @@ widget.toggleCall();
 
 ## Event Listeners
 
-```js
+```js copy
 widget.on("dialing", () => console.log("Dialing..."));
 widget.on("connected", () => console.log("Connected"));
 widget.on("ended", () => console.log("Call ended"));
@@ -128,10 +128,10 @@ widget.on("error", (err) => console.error("Error:", err));
 
 ## Widget Options
 
-| Option    | Type      | Required | Default | Description                                                                                             |
-| --------- | --------- | -------- | ------- | ------------------------------------------------------------------------------------------------------- |
-| `agentId` | `string`  | ✅ Yes    | —       | The unique Agent ID for your AI agent.                                                                  |
-| `mountUI` | `boolean` | ❌ No     | `false` | If `true`, auto-mounts the floating UI. If `false`, no UI is shown and you control it programmatically. |
+| Option    | Type      | Required | Default | Description                                                                  |
+| --------- | --------- | -------- | ------- | ---------------------------------------------------------------------------- |
+| `agentId` | `string`  | ✅ Yes    | —       | The unique Agent ID for your AI agent.                                       |
+| `mountUI` | `boolean` | ❌ No     | `false` | If `true`, auto-mounts the floating UI. If `false`, you control it manually. |
 
 ---
 
