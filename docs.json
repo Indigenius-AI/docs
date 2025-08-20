@@ -25,7 +25,8 @@
             "group": "AgentPro",
             "pages": [
               "AgentPro/welcome",
-              "AgentPro/Quickstart"
+              "AgentPro/Quickstart",
+              "AgentPro/Webcalling"
             ]
           }
         ]
