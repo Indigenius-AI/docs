@@ -4,7 +4,7 @@
   "name": "Indigenius AI",
   "colors": {
     "primary": "#F79320",
-    "light": "#FFEDD5",
+    "light": "#FFEDD5", 
     "dark": "#F79320"
   },
   "favicon": "/logo/indigenious-icon.png",
@@ -24,13 +24,12 @@
           {
             "group": "AgentPro",
             "pages": [
-              "AgentPro/markdown",
+              "AgentPro/welcome",
               "AgentPro/code",
               "AgentPro/images",
               "AgentPro/settings",
               "AgentPro/navigation",
-              "AgentPro/reusable-snippets",
-              "AgentPro/widget"
+              "AgentPro/reusable-snippets"
             ]
           }
         ]
@@ -55,7 +54,26 @@
           }
         ]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Documentation",
+          "href": "https://cdialai-0073e50a.mintlify.app/",
+          "icon": "book-open-cover"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://mintlify.com/community",
+          "icon": "slack"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://mintlify.com/blog",
+          "icon": "newspaper"
+        }
+      ]
+    }
   },
   "logo": {
     "light": "/logo/logo-primary.svg",
@@ -64,16 +82,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Community",
-        "href": "https://discord.com/channels/1326841048995074129/indigenius.aibycdialcd_99864"
-      },
-      {
-        "label": "Blog",
-        "href": "https://indigenius.ai/blog"
-      },
-      {
         "label": "Support",
-        "href": "mailto:support@indigenius.ai"
+        "href": "mailto:hi@mintlify.com"
       }
     ],
     "primary": {
@@ -84,13 +94,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://twitter.com/cdial_ai",
-      "github": "https://github.com/CDIAL-Org",
-      "linkedin": "https://ng.linkedin.com/company/official-cdial",
-      "facebook": "https://m.facebook.com/CdialAI",
-      "youtube": "https://www.youtube.com/@CDIAL_AI",
-      "instagram": "https://www.instagram.com/indigenius.ai",
-      "website": "https://www.tiktok.com/@indigenius.ai"
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
     }
   }
 }
