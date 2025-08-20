@@ -29,24 +29,19 @@ Indigenius Agent Pro is a product built on top of voice agents.
 
 We call them **Agents**, and they are composed of 3 parts:
 
-<div className="grid grid-cols-2 gap-4 mt-6">
+<CardGroup cols={2}>
+  <Card title="Speech-To-Text (STT)" icon="microphone" iconType="solid" color="#F79320" iconSize={22}>
+    Audio from the user is transcribed
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="microphone" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Speech-To-Text (STT)</span></p>
-    <p className="text-sm text-gray-600">Audio from the user is transcribed</p>
-  </div>
+  <Card title="Large-Language-Model (LLM)" icon="brain" iconType="solid" color="#F79320" iconSize={22}>
+    Transcript is fed to an LLM
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="brain" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Large-Language-Model (LLM)</span></p>
-    <p className="text-sm text-gray-600">Transcript is fed to an LLM</p>
-  </div>
-
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="volume-up" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Text-To-Speech (TTS)</span></p>
-    <p className="text-sm text-gray-600">Outputs from LLM are spoken back to user</p>
-  </div>
-
-</div>
+  <Card title="Text-To-Speech (TTS)" icon="volume-up" iconType="solid" color="#F79320" iconSize={22}>
+    Outputs from LLM are spoken back to user
+  </Card>
+</CardGroup>
 
 Each layer is highly customizable and we support dozens of models across STT, LLM and TTS.
 
@@ -54,19 +49,15 @@ Each layer is highly customizable and we support dozens of models across STT, LL
 
 ## Quickstart Guides
 
-<div className="grid grid-cols-2 gap-4 mt-6">
+<CardGroup cols={2}>
+  <Card title="No-code Quickstart" icon="bolt" iconType="solid" color="#F79320" iconSize={22}>
+    The easiest way to start with Indigenius. Build a voice agent in 5 Minutes.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="bolt" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">No-code Quickstart</span></p>
-    <p className="text-sm text-gray-600">The easiest way to start with indigenius. Build a voice agent in 5 Minutes.</p>
-  </div>
-
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="globe" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Web Quickstarts</span></p>
-    <p className="text-sm text-gray-600">Quickly get started making web calls.</p>
-  </div>
-
-</div>
+  <Card title="Web Quickstarts" icon="globe" iconType="solid" color="#F79320" iconSize={22}>
+    Quickly get started making web calls.
+  </Card>
+</CardGroup>
 
 ---
 
@@ -74,86 +65,68 @@ Each layer is highly customizable and we support dozens of models across STT, LL
 
 Explore end-to-end examples for some common voice workflows:
 
-<div className="grid grid-cols-2 gap-4 mt-6">
+<CardGroup cols={2}>
+  <Card title="Inbound Calls" icon="phone" iconType="solid" color="#F79320" iconSize={22}>
+    Build an outbound sales agent for scheduling appointment.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="phone" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Inbound Calls</span></p>
-    <p className="text-sm text-gray-600">Build an outbound sales agent for scheduling appointment.</p>
-  </div>
+  <Card title="Outbound Calls" icon="phone-alt" iconType="solid" color="#F79320" iconSize={22}>
+    Build a technical Support that remembers where it left off.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="phone-alt" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Outbound Calls</span></p>
-    <p className="text-sm text-gray-600">Build a technical Support that remembers where it left off.</p>
-  </div>
-
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="notes-medical" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Diseases Survey</span></p>
-    <p className="text-sm text-gray-600">Conduct survey for diseases risk.</p>
-  </div>
-
-</div>
+  <Card title="Diseases Survey" icon="notes-medical" iconType="solid" color="#F79320" iconSize={22}>
+    Conduct survey for diseases risk.
+  </Card>
+</CardGroup>
 
 ---
 
 ## Key Concepts
 
-<div className="grid grid-cols-2 gap-4 mt-6">
+<CardGroup cols={2}>
+  <Card title="Agents" icon="robot" iconType="solid" color="#F79320" iconSize={22}>
+    Agents set the foundation for applications built on Indigenius.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="robot" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Agents</span></p>
-    <p className="text-sm text-gray-600">Agents set the foundation for applications built on Indigenius.</p>
-  </div>
+  <Card title="Server URLs" icon="server" iconType="solid" color="#F79320" iconSize={22}>
+    Server URLs allows Indigenius deliver your application data in realtime
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="server" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Server URLs</span></p>
-    <p className="text-sm text-gray-600">Server URLs allows Indigenius deliver your application data in realtime</p>
-  </div>
+  <Card title="Phone Calling" icon="phone-square" iconType="solid" color="#F79320" iconSize={22}>
+    Learning the ins-and-outs of telephony & conducting phone calls on Indigenius.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="phone-square" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Phone Calling</span></p>
-    <p className="text-sm text-gray-600">Learning the ins-and-outs of telephony & conducting phone calls on Indigenius.</p>
-  </div>
-
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="shield-alt" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Privacy</span></p>
-    <p className="text-sm text-gray-600">Learn about privacy concepts like HIPPA & data privacy on indigenius.</p>
-  </div>
-
-</div>
+  <Card title="Privacy" icon="shield-alt" iconType="solid" color="#F79320" iconSize={22}>
+    Learn about privacy concepts like HIPPA & data privacy on indigenius.
+  </Card>
+</CardGroup>
 
 ---
 
 ## Explore SDKs
 
-Our SDks are open source, and are available on our Github:
+Our SDKs are open source, and are available on our Github:
 
-<div className="grid grid-cols-2 gap-4 mt-6">
+<CardGroup cols={2}>
+  <Card title="Indigenius Web" icon="code" iconType="solid" color="#F79320" iconSize={22}>
+    Add Indigenius agent to your web application.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="code" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Indigenius Web</span></p>
-    <p className="text-sm text-gray-600">Add Indigenius agent to your web application.</p>
-  </div>
+  <Card title="Indigenius IOS" icon="mobile-alt" iconType="solid" color="#F79320" iconSize={22}>
+    Add an Indigenius agent to your IOS app.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="mobile-alt" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Indigenius IOS</span></p>
-    <p className="text-sm text-gray-600">Add an Indigenius agent to your IOS app</p>
-  </div>
+  <Card title="Indigenius Flutter" icon="mobile" iconType="solid" color="#F79320" iconSize={22}>
+    Add an indigenius agent to your flutter app.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="mobile" iconType="solid" size={18} color="#F79320" /> <span className="font-semibold">Indigenius Flutter</span></p>
-    <p className="text-sm text-gray-600">Add an indigenius agent to your flutter app.</p>
-  </div>
+  <Card title="Indigenius React Native" icon="react" iconType="brands" color="#F79320" iconSize={22}>
+    Add an Indigenius agent to your React Native app.
+  </Card>
 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p><Icon icon="react" iconType="brands" size={18} color="#F79320" /> <span className="font-semibold">Indigenius React Native</span></p>
-    <p className="text-sm text-gray-600">Add an Indigenius agent to your React Native app.</p>
-  </div>
-
-   {/* 
-  <div className="p-4 rounded-xl border shadow-sm bg-white hover:border-[#F79320] transition-colors">
-    <p className="font-semibold">Indigenius Python</p>
-    <p className="text-sm text-gray-600">Multi-Platform, Mac, Windows and Linux.</p>
-  </div>
-*/}
-
-</div>
+  {/* Hidden for now
+  <Card title="Indigenius Python" icon="python" iconType="brands" color="#F79320" iconSize={22}>
+    Multi-Platform, Mac, Windows and Linux.
+  </Card>
+  */}
+</CardGroup>
