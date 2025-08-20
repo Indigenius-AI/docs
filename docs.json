@@ -4,7 +4,7 @@
   "name": "Indigenius AI",
   "colors": {
     "primary": "#F79320",
-    "light": "#FFEDD5", 
+    "light": "#FFEDD5",
     "dark": "#F79320"
   },
   "favicon": "/logo/indigenious-icon.png",
@@ -24,12 +24,7 @@
           {
             "group": "AgentPro",
             "pages": [
-              "AgentPro/welcome",
-              "AgentPro/code",
-              "AgentPro/images",
-              "AgentPro/settings",
-              "AgentPro/navigation",
-              "AgentPro/reusable-snippets"
+              "AgentPro/welcome"
             ]
           }
         ]
@@ -64,12 +59,12 @@
         },
         {
           "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "href": "https://discord.com/channels/1326841048995074129/indigenius.aibycdialcd_99864",
+          "icon": "discord"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://indigenius.ai/blog",
           "icon": "newspaper"
         }
       ]
@@ -94,9 +89,11 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "facebook": "https://m.facebook.com/CdialAI",
+      "x-twitter": "https://twitter.com/cdial_ai",
+      "youtube": "https://www.youtube.com/@CDIAL_AI",
+      "instagram": "https://www.instagram.com/indigenius.ai/",
+      "website": "https://www.tiktok.com/@indigenius.ai"
     }
   }
 }
