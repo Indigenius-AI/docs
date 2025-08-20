@@ -35,32 +35,23 @@ We call them **Agents**, and they are composed of 3 parts:
 
 ## Core Components
 
-\<div className="grid grid-cols-2 gap-4 mt-6"\>
+## Core Components  
 
-\<div className="p-4 rounded-xl border shadow-sm bg-white"\>
+<Grid cols={2}>
 
-\<p className="font-semibold"\>Speech-To-Text (STT)\</p\>
+<Card>
+**Speech-To-Text (STT)**  
+Audio from the user is transcribed
+</Card>
 
-\<p className="text-sm text-gray-600"\>Audio from the user is transcribed\</p\>
+<Card>
+**Large-Language-Model**  
+Transcript is fed to an LLM
+</Card>
 
-\</div\>
+<Card>
+**Text-To-Speech (TTS)**  
+Outputs from LLM are spoken back to user
+</Card>
 
-\<div className="p-4 rounded-xl border shadow-sm bg-white"\>
-
-\<p className="font-semibold"\>Large-Language-Model\</p\>
-
-\<p className="text-sm text-gray-600"\>Transcript is fed to an LLM\</p\>
-
-\</div\>
-
-\<div className="p-4 rounded-xl border shadow-sm bg-white"\>
-
-\<p className="font-semibold"\>Text-To-Speech (TTS)\</p\>
-
-\<p className="text-sm text-gray-600"\>Outputs from LLM are spoken back to user\</p\>
-
-\</div\>
-
-\</div\>
-
-This will render as 3 nice boxes in a 2-column grid (two on the first row, one centered on the second row).
+</Grid>
