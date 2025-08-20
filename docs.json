@@ -24,7 +24,8 @@
           {
             "group": "AgentPro",
             "pages": [
-              "AgentPro/welcome"
+              "AgentPro/welcome",
+              "AgentPro/Quickstart"
             ]
           }
         ]
