@@ -29,7 +29,7 @@
               "AgentPro/images",
               "AgentPro/settings",
               "AgentPro/navigation",
-              "AgentPro/reusable-snippets"
+              "AgentPro/reusable-snippets",
               "AgentPro/widget"
             ]
           }
@@ -57,21 +57,16 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
+      
         {
           "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "href": "https://discord.com/channels/1326841048995074129/indigenius.aibycdialcd_99864",
+          "icon": "discord"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "href": "https://indigenius.ai/blog",
+          "icon": "cdial blog"
         }
       ]
     }
@@ -84,7 +79,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@indigenius.ai"
       }
     ],
     "primary": {
@@ -95,9 +90,14 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://twitter.com/cdial_ai",
+      "github": "https://github.com/CDIAL-Org",
+      "linkedin": "https://ng.linkedin.com/company/official-cdial",
+      "facebook": "https://m.facebook.com/CdialAI",
+      "youtube": "https://www.youtube.com/@CDIAL_AI",
+      "instagram": "https://www.instagram.com/indigenius.ai",
+      "tiktok": "https://www.tiktok.com/@indigenius.ai",
+      
     }
   }
 }
