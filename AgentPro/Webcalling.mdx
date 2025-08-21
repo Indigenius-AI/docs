@@ -66,7 +66,7 @@ Or use the official CDN:
         <h1>Web Call Demo (Tag Only)</h1>
 
 ````
-    <!-- Widget tag only -->
+    ```<!-- Widget tag only -->```
     <indigenius-convai agent-id="YOUR_AGENT_ID"></indigenius-convai>
 
     <!-- SDK script -->
@@ -91,24 +91,36 @@ Or use the official CDN:
         <h1>Web Call Demo (Script + Instantiation)</h1>
 
 ````
-    <!-- Widget tag -->
-    <indigenius-convai id="convai-widget"></indigenius-convai>
+    ```<!-- Control button -->```
+    <button id="toggle-call" disabled>Loading...</button>
 
-    <!-- SDK script -->
+    ```<!-- SDK script -->```
     <script type="module" src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget/dist/index.js"></script>
 
-    <script defer>
-      const widget = new CdialWidget({
-        agentId: 'YOUR_AGENT_ID',
-        mountUI: true
-      });
+ <script defer>
+        if (window.CdialWidget) {
+          const widget = new window.CdialWidget({ agentId: "agent-id", mountUI: false });
+          const button = document.getElementById('toggle-call');
+          let widgetReady = false;
 
-      widget.init();
+          widget.init().then(() => {
+            widgetReady = true;
+            button.disabled = false;
+            button.textContent = 'Start Call';
+          });
 
-      widget.on('dialing', () => console.log('Dialing...'));
-      widget.on('connected', () => console.log('Connected'));
-      widget.on('ended', () => console.log('Call ended'));
-      widget.on('error', (err) => console.error('Error:', err));
+          widget.on('dialing', () => button.textContent = 'Dialing...');
+          widget.on('connected', () => button.textContent = 'End Call');
+          widget.on('ended', () => button.textContent = 'Start Call');
+          widget.on('error', console.error);
+
+          button.addEventListener('click', () => {
+            if (!widgetReady) return;
+            widget.toggleCall();
+          });
+        } else {
+          console.error("CdialWidget is not available on window.");
+        }
     </script>
   </body>
 </html>
