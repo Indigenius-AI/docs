@@ -17,8 +17,7 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
@@ -26,7 +25,8 @@
             "pages": [
               "AgentPro/welcome",
               "AgentPro/Quickstart",
-              "AgentPro/Webcalling"
+              "AgentPro/Webcalling",
+              "AgentPro/CoreModels"
             ]
           }
         ]
