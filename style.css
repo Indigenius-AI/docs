@@ -2,3 +2,7 @@
   height: 3.45rem;
   margin-top: 1px
 }
+
+.topbar-cta-button a div span {
+  color: '#090302'
+}
