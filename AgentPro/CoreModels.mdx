@@ -74,3 +74,82 @@ Here is a high level pictogram of the AgentPro architecture:
 
 ![Agent Core Model Agent Gi](/images/core-model-high-level-pic.png)
 
+
+## Overview
+
+The following are the models we currently run, with many more coming soon:
+
+- **Endpointing** – Detects exactly when the user finishes speaking.  
+- **Interruptions** – Lets users cut in and interrupt the assistant.  
+- **Background noise filtering** – Cleans up ambient noise in real-time.  
+- **Background voice filtering** – Ignores speech from TVs, echoes, or other people.  
+- **Backchanneling** – Adds affirmations like “yeah” or “got it” at the right moments.  
+- **Emotion detection** – Detects user tone and passes emotion to the LLM.  
+- **Filler injection** – Adds “um”, “like”, “so” and other natural fillers to agent responses.  
+
+---
+
+### Endpointing
+
+Endpointing determines when the user is done speaking. Traditional methods rely on silence detection with a timeout. Unfortunately, if we want **sub-second response times**, that approach is insufficient.
+
+Indigenius uses a **custom fusion audio-text model** to detect when a user has completed their turn. Based on both the **user’s tone** and **what they’re saying**, it decides the pause length before sending the input to the LLM.
+
+This ensures users are **not interrupted mid-thought** while still providing fast responses once they are done speaking.
+
+---
+
+### Interruptions (Barge-in)
+
+Interruptions (also called **Barge-in**) allow the system to detect when a user wants to interrupt the agent’s speech.
+
+Indigenius uses a **custom model** to distinguish between:
+
+- **True interruptions**, e.g., “stop”, “hold up”, “that’s not what I mean”  
+- **Non-interruptions**, e.g., “yeah”, “oh gatcha”, “okay”  
+
+The system also tracks where the agent was cut off so the LLM can continue properly.
+
+---
+
+### Background Noise Filtering
+
+Many models, including the transcriber, rely on audio input. Real-world sounds like music or car horns can interfere with performance. **Background noise filtering** removes these distractions in real-time.
+
+---
+
+### Background Voice Filtering
+
+Transcription models pick up all speech-like sounds, which can include TVs or echoes. Background voice filtering focuses on the **primary speaker** while ignoring all other voices, ensuring accurate conversation flow.
+
+---
+
+### Backchanneling
+
+Humans naturally provide feedback like “yeah”, “uh-huh”, or “got it” while others speak. These **backchannel cues** affirm the speaker without interrupting them.
+
+Indigenius uses a **fusion audio-text model** to:
+
+- Detect the **best moments** to provide backchanneling  
+- Choose the **appropriate affirmation**  
+
+---
+
+### Emotion Detection
+
+How something is said is often as important as **what** is said. Indigenius trains a **real-time audio model** to detect emotional inflection.
+
+This emotion data is passed to the LLM, allowing the agent to respond differently if the user is **angry, annoyed, or confused**.
+
+---
+
+### Filler Injection
+
+LLM outputs tend to be **formal**, not conversational. People naturally use fillers like “umm”, “ahh”, “I mean”, “like”, and “so”.
+
+To maintain natural conversation without adding latency:
+
+- Indigenius built a **custom real-time model**  
+- Converts streaming output into **natural conversational speech**  
+
+This ensures responses remain fluid and human-like.
