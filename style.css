@@ -3,7 +3,7 @@
   margin-top: 1px
 }
 
-.topbar-cta-button a div span,
-.topbar-cta-button a div svg {
+#topbar-cta-button a div span,
+#topbar-cta-button a div svg {
   color: #090302;
 }
