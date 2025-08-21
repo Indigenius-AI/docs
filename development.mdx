@@ -1,107 +1,285 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: "Web Call"
+description: "Learn to make a web call to your agent from a browser."
 ---
 
-<Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding. <br />
-  Please upgrade to ```docs.json``` before proceeding and delete the legacy ```mint.json``` file.
-</Info>
+## Overview
 
-Follow these steps to install and run Mintlify on your operating system:
+This guide shows you how to make a web call to your Indigenius agent.\
+You can create an assistant using either:
 
-**Step 1**: Install Mintlify:
+- The **Web SDK**
+- The **Indigenius Dashboard**
 
-<CodeGroup>
+For apps built with **Next.js (v0)**:
 
-  ```bash npm
-  npm i -g mintlify
-  ```
-
-```bash yarn
-yarn global add mintlify
-```
-
-</CodeGroup>
-
-**Step 2**: Navigate to the docs directory (where the `docs.json` file is located) and execute the following command:
+- Go to **Settings → Environment Variables**
+- Create a new variable called:
 
 ```bash
-mintlify dev
+NEXT_PUBLIC_INDIGENIUS_AGENT_ID
 ```
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+- Add your **Agent ID** from the dashboard.
 
-### Custom Ports
+---
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. To run Mintlify on port 3333, for instance, use this command:
+## Installation
 
-```bash
-mintlify dev --port 3333
-```
-
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
-
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
-
-## Mintlify Versions
-
-Please note that each CLI release is associated with a specific version of Mintlify. If your local website doesn't align with the production version, please update the CLI:
+Install the SDK with your preferred package manager:
 
 <CodeGroup>
 
 ```bash npm
-npm i -g mintlify@latest
+npm install indigenius-ai-widget
 ```
 
+
 ```bash yarn
-yarn global upgrade mintlify
+yarn add indigenius-ai-widget
+```
+
+
+```bash pnpm
+pnpm add indigenius-ai-widget
 ```
 
 </CodeGroup>
 
-## Validating Links
+Or use the official CDN:
 
-The CLI can assist with validating reference links made in your documentation. To identify any broken links, use the following command:
-
-```bash
-mintlify broken-links
+```html
+<script src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget/dist/index.js"></script>
 ```
 
-## Deployment
+---
 
-<Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
-</Tip>
+## Quick Start
 
-If the deployment is successful, you should see the following:
+<Tabs>
+  <Tab title="HTML: Tag Only">
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Web Call Demo</title>
+      </head>
+      <body>
+        <h1>Web Call Demo (Tag Only)</h1>
+    
+        <!-- Widget tag only -->
+        <indigenius-convai agent-id="YOUR_AGENT_ID"></indigenius-convai>
+    
+        <!-- SDK script -->
+        <script src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget/dist/index.js"></script>
+      </body>
+    </html>
+    ```
+  </Tab>
+  <Tab title="HTML: Script + Instantiation">
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Web Call Demo</title>
+      </head>
+      <body>
+        <h1>Web Call Demo (Script + Instantiation)</h1>
+    
+        <!-- Widget tag -->
+        <indigenius-convai id="convai-widget"></indigenius-convai>
+    
+        <!-- SDK script -->
+        <script type="module" src="https://cdn.jsdelivr.net/npm/indigenius-ai-widget/dist/index.js"></script>
+    
+        <script defer>
+          const widget = new CdialWidget({
+            agentId: 'YOUR_AGENT_ID',
+            mountUI: true
+          });
+    
+          widget.init();
+    
+          widget.on('dialing', () => console.log('Dialing...'));
+          widget.on('connected', () => console.log('Connected'));
+          widget.on('ended', () => console.log('Call ended'));
+          widget.on('error', (err) => console.error('Error:', err));
+        </script>
+      </body>
+    </html>
+    ```
+  </Tab>
+  <Tab title="React">
+    ```tsx
+    import { useEffect, useRef, useState } from "react";
+    import { CdialWidget } from "indigenius-ai-widget";
+    
+    export default function App() {
+      const widgetRef = useRef<CdialWidget | null>(null);
+      const [callState, setCallState] = useState("idle");
+      const [widgetReady, setWidgetReady] = useState(false);
+    
+      useEffect(() => {
+        const widget = new CdialWidget({
+          agentId: process.env.NEXT_PUBLIC_INDIGENIUS_AGENT_ID!,
+          mountUI: true,
+        });
+        widgetRef.current = widget;
+    
+        widget.on("dialing", () => setCallState("dialing"));
+        widget.on("connected", () => setCallState("connected"));
+        widget.on("ended", () => setCallState("ended"));
+        widget.on("error", console.error);
+    
+        widget.init().then(() => setWidgetReady(true));
+    
+        return () => widget.destroy();
+      }, []);
+    
+      const toggleCall = () => widgetRef.current?.toggleCall();
+    
+      return (
+        <div>
+          <h1>Cdial Widget Demo (React)</h1>
+          <button onClick={toggleCall} disabled={!widgetReady}>
+            {callState === "connected"
+              ? "End Call"
+              : callState === "dialing"
+              ? "Dialing..."
+              : "Start Call"}
+          </button>
+        </div>
+      );
+    }
+    ```
+  </Tab>
+  <Tab title="Vue">
+    ```vue
+    <template>
+      <div>
+        <h1>Cdial Widget Demo (Vue)</h1>
+        <button @click="toggleCall">{{ buttonLabel }}</button>
+      </div>
+    </template>
+    
+    <script setup>
+    import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+    import { CdialWidget } from "indigenius-ai-widget";
+    
+    const callState = ref("idle");
+    const widget = ref<CdialWidget | null>(null);
+    
+    onMounted(() => {
+      widget.value = new CdialWidget({
+        agentId: import.meta.env.VITE_INDIGENIUS_AGENT_ID,
+        mountUI: true,
+      });
+    
+      widget.value.on("dialing", () => (callState.value = "dialing"));
+      widget.value.on("connected", () => (callState.value = "connected"));
+      widget.value.on("ended", () => (callState.value = "ended"));
+      widget.value.on("error", console.error);
+    
+      widget.value.init();
+    });
+    
+    onBeforeUnmount(() => {
+      widget.value?.destroy();
+    });
+    
+    const toggleCall = () => widget.value?.toggleCall();
+    const buttonLabel = computed(() =>
+      callState.value === "connected" ? "End Call" : "Start Call"
+    );
+    </script>
+    ```
+  </Tab>
+  <Tab title="Angular">
+    ```ts
+    import { Component, OnInit, OnDestroy } from "@angular/core";
+    import { CdialWidget } from "indigenius-ai-widget";
+    
+    @Component({
+      selector: "app-root",
+      template: `
+        <h1>Cdial Widget Demo (Angular)</h1>
+        <button (click)="toggleCall()">{{ buttonLabel }}</button>
+      `,
+    })
+    export class AppComponent implements OnInit, OnDestroy {
+      callState = "idle";
+      widget: CdialWidget | null = null;
+    
+      get buttonLabel() {
+        return this.callState === "connected" ? "End Call" : "Start Call";
+      }
+    
+      ngOnInit() {
+        this.widget = new CdialWidget({
+          agentId: process.env["NG_APP_INDIGENIUS_AGENT_ID"],
+          mountUI: true,
+        });
+    
+        this.widget.on("dialing", () => (this.callState = "dialing"));
+        this.widget.on("connected", () => (this.callState = "connected"));
+        this.widget.on("ended", () => (this.callState = "ended"));
+        this.widget.on("error", console.error);
+    
+        this.widget.init();
+      }
+    
+      ngOnDestroy() {
+        this.widget?.destroy();
+      }
+    
+      toggleCall() {
+        this.widget?.toggleCall();
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
 
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+---
 
-## Code Formatting
+## Widget Options
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+| Option    | Type    | Required | Default | Description                                             |
+| --------- | ------- | -------- | ------- | ------------------------------------------------------- |
+| `agentId` | string  | ✅ Yes    | —       | Unique Agent ID for your AI agent                       |
+| `mountUI` | boolean | ❌ No     | false   | Auto-mount floating UI if true, manual control if false |
 
-## Troubleshooting
+---
 
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+## Available Events
 
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of mintlify: `npm remove -g mintlify`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall mintlify: `npm install -g mintlify`
-  </Accordion>
+| Event       | Payload | Description                           |
+| ----------- | ------- | ------------------------------------- |
+| `dialing`   | void    | Fired when connecting to the AI agent |
+| `connected` | void    | Fired when connection established     |
+| `ended`     | void    | Fired when call ends                  |
+| `error`     | Error   | Fired on internal widget error        |
 
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the \~/.mintlify folder. Afterwards, run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
+---
 
-Curious about what changed in the CLI version? [Check out the CLI changelog.](https://www.npmjs.com/package/mintlify?activeTab=versions)
+<CardGroup cols={1}>
+  <Card title="Tip" icon="lightbulb" iconType="solid" color="#FACC15">
+    ✅ Use <code>
+    
+    mountUI: true</code>
+
+    for quick integration.\\
+
+    ✅ Use <code>
+    
+    mountUI: false</code>
+
+    for custom UI.\\
+
+    ✅ Listen to events for granular call control.
+  </Card>
+</CardGroup>
