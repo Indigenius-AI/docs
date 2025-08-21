@@ -5,86 +5,67 @@ description: "Learn about the three core components to AgentPro voice AI pipelin
 
 At its core Indigenius is an orchestration layer over three modules: the **_transcriber_**, the **_model_**, and the **_voice_**.
 
-![Createyour Agent Gi](/images/CreateyourAgent.gif)
+![Agent Core Model Agent Gi](/images/core-model.png)
 
-Creating a new agent
+These three modules can be swapped out with any provider of your choosing: **OpenAI, Groq, Deepgram, ElevenLabs**, etc. You can even plug in your own server to act as the LLM.
 
-### **3. Configure your agent**
+Indigenius takes these three modules, optimizes latency, manages scaling & streaming, and orchestrates the conversation flow to make interactions sound human.
 
-1. **First message**
+---
 
-Set the first message that the agent will speak when a conversation is initiated.
+## 1. Listen (Intake Raw Audio)
 
-```css
-First Message
+When a person speaks, the client device (laptop, phone, etc.) records raw audio (1’s & 0’s at its core).  
 
-Hi there, this is Ana from Global health. How can I assist you today?
-```
+This raw audio must either:
 
-2. **System prompt**
+- Be transcribed on the **client device**, or  
+- Be sent to a **server** to convert it into text.
 
-Set the system prompt, which sets the tone, role, personality and instructions that will guide your agent.
+---
 
-```css
-System Prompt
+## 2. Run an LLM
 
-You are Ana, a customer service voice agent for Global Health. Your primary purpose is to help customers resolve issues with their products, answer questions about services, and ensure a satisfying support experience.
-- Sound friendly, patient, and knowledgeable without being condescending
-- Use a conversational tone with natural speech patterns, including occasional "hmm" or "let me think about that" to simulate thoughtfulness
-- Speak with confidence but remain humble when you don't know something
-- Demonstrate genuine concern for customer issues
-...
-```
+The transcribed text is then fed into a **prompt** and run through a **Large Language Model (LLM)**.  
 
-### **4. Configure the models for your agent**
+The LLM acts as the core intelligence that simulates a human behind the scenes.
 
-1. **Set the LLM (Large Language Model)**
+---
 
-Select your preferred provider and a large language model (LLM) that will power your agent (default Indigenius).
+## 3. Speak (Text → Raw Audio)
 
-![Provider Pn](/images/Provider.png)
+The LLM outputs text, which must now be spoken. The text is converted into **raw audio** (again, 1’s & 0’s), which is playable on the user’s device.  
 
-2. **Set Language**
+This process can happen:
 
-In the language tab, you select the primary language that your agent will communicate in.
+- Directly on the **user’s device**, or  
+- On a **server**, which sends the audio back to the client.
 
-![Langauge Gi](/images/Langauge.gif)
+---
 
-### **5. Make an inbound call (call your agent)**
+Indigenius orchestrates all these steps, ensuring a **smooth and responsive conversation**, while providing a simple set of tools to manage these internal processes.
 
-1. **Call your agent in the dashboard**
+---
 
-Try calling your agent by clicking the “Talk to agent ” button in the dashboard to start the call and "End Call" to end the call.
+## Orchestration Models
 
-![Untitleddesign(2) Gi](/images/Untitleddesign\(2\).gif)
+Indigenius runs real-time models on top of **STT**, **LLM**, and **TTS**.  
 
-2. **Call your agent by phone**
+It also provides extra capabilities on top of the core models, including latency optimization and seamless streaming.
 
-[**1. Purchase a new number**](https://agent.indigenius.ai/dashboard/phone-numbers)
+---
 
-In the phone number tab, you can purchase a number for any of the available countries.
+### High-Level Architecture Overview
 
-- Visit the [phone number](https://agent.indigenius.ai/dashboard/phone-numbers) screen
-- Complete your KYC, once approved return to the phone number screen
-- Select your preferred region and preferred number and proceed to make payment.
-- Assign your preferred agent for inbound or outbound calls.
+| Module   | Function                                                                                   | Notes                                                                                       |
+|---------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| **Listen (STT)** | Intake and transcribe raw audio from user devices                                       | Can be local or server-side                                                               |
+| **LLM**         | Process text and generate conversational responses                                       | Acts as the “intelligence” behind the conversation                                        |
+| **Speak (TTS)** | Convert LLM output into raw audio for playback                                         | Can happen locally or via server; optimized for low latency                                |
+| **Orchestration** | Coordinates the flow between STT, LLM, and TTS                                        | Handles scaling, streaming, and latency optimization                                       |
 
-  ![Untitleddesign Gi](/images/Untitleddesign.gif)
+---
 
-**2. Attach a phone number to your agent**
+Indigenius also runs a suite of **audio and text models** that make its **STT → LLM → TTS pipeline** feel natural and human-like.
 
-Select any of your created agents for the inbound or outbound call. Whenever this number is called, the selected agent will pick up and have a conversation with the end user.
-
-![Assign Agent Gi](/images/AssignAgent.gif)
-
-### **6. Make an outbound call (agent calls you)**
-
-1. **Set your phone number and agent**
-
-- Select the phone number you want to initiate the outbound call.
-- Upload the phone numbers you want to call.
-- Select the agent you want to initiate the call.
-
-2. **Make the outbound call**     
-
-You can either initiate the call immediately or schedule the call for later. 
+This orchestration ensures real-time performance, low latency, and a seamless conversation experience.
