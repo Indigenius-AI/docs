@@ -25,7 +25,8 @@
               "AgentPro/welcome",
               "AgentPro/Quickstart",
               "AgentPro/Webcalling",
-              "AgentPro/CoreModels"
+              "AgentPro/CoreModels",
+              "AgentPro/Widget"
             ]
           }
         ]
