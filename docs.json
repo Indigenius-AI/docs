@@ -24,6 +24,7 @@
             "pages": [
               "AgentPro/welcome",
               "AgentPro/Quickstart",
+              "AgentPro/Usecases",
               "AgentPro/Webcalling",
               "AgentPro/CoreModels",
               "AgentPro/Widget"

@@ -1,5 +1,198 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Use Cases"
+description: "Practical industry-specific examples of how to build AI agents in Indigenius Agent Pro with webhook integration and JSON configuration."
 ---
+
+Indigenius AI can be tailored to fit a wide range of industries.  
+Below are practical examples that walk you through how to build an agent from scratch for **Banking, Health, Agriculture, Sales, and E-commerce**.  
+
+Each example includes webhook integration and a JSON configuration.
+
+---
+
+## Banking
+
+A user is able to use the agent in this sector to carry out typical tasks such as checking account balance, processing loan requests, and blocking a lost card.
+
+**Configuration:**
+
+- **Agent Name:** Anna – Banking Assistant  
+- **Company:** Lafia Bank  
+- **Industry:** Banking  
+- **Languages:** English, French, Mandarin  
+- **Voice Texture:** Male & Female  
+- **Tasks:** Check account balance, process loan requests, block lost card  
+
+**Webhook Setup:**
+
+- Balance check → `https://bankapi.com/checkBalance`  
+- Loan request → `https://bankapi.com/requestLoan`  
+
+```json
+{
+  "agentName": "Anna – Banking Assistant",
+  "company": "Lafia Bank",
+  "industry": "Banking",
+  "language": ["English", "French", "Mandarin"],
+  "voiceTexture": "Male",
+  "tasks": [
+    "Check account balance",
+    "Process loan requests",
+    "Block lost card"
+  ],
+  "webhooks": [
+    {
+      "event": "getBalance",
+      "url": "https://bankapi.com/checkBalance",
+      "method": "POST"
+    },
+    {
+      "event": "requestLoan",
+      "url": "https://bankapi.com/requestLoan",
+      "method": "POST"
+    }
+  ]
+}
+````
+
+---
+
+## Agriculture
+
+An agricultural agent can help farmers access real-time updates and connect with markets.
+
+**Configuration:**
+
+* **Agent Name:** AgriBot
+* **Company:** FarmHub Nigeria
+* **Industry:** Agriculture
+* **Languages:** English
+* **Voice Texture:** Male & Female
+* **Tasks:** Provide crop price updates, weather forecasts, connect farmers with buyers
+
+**Webhook Setup:**
+
+* Weather updates → `https://agriapi.com/getWeather`
+* Market price → `https://agriapi.com/getMarketPrice`
+
+```json
+{
+  "agentName": "AgriBot",
+  "company": "FarmHub Nigeria",
+  "industry": "Agriculture",
+  "language": ["English"],
+  "voiceTexture": "Male",
+  "tasks": [
+    "Provide crop price updates",
+    "Give weather forecasts",
+    "Connect farmers with buyers"
+  ],
+  "webhooks": [
+    {
+      "event": "getWeather",
+      "url": "https://agriapi.com/getWeather",
+      "method": "GET"
+    },
+    {
+      "event": "getMarketPrice",
+      "url": "https://agriapi.com/getMarketPrice",
+      "method": "GET"
+    }
+  ]
+}
+```
+
+---
+
+## E-commerce
+
+An e-commerce agent can handle customer queries, recommend products, and process returns.
+
+**Configuration:**
+
+* **Agent Name:** ShopSmart AI
+* **Company:** CDial Mart
+* **Industry:** E-commerce
+* **Languages:** English
+* **Voice Texture:** Male & Female
+* **Tasks:** Track orders, recommend products, handle returns
+
+**Webhook Setup:**
+
+* Order tracking → `https://shopapi.com/orderStatus`
+* Product recommendations → `https://shopapi.com/productRecommendation`
+
+```json
+{
+  "agentName": "ShopSmart AI",
+  "company": "CDial Mart",
+  "industry": "E-commerce",
+  "language": ["English"],
+  "voiceTexture": "Male",
+  "tasks": [
+    "Track orders",
+    "Recommend products",
+    "Handle returns"
+  ],
+  "webhooks": [
+    {
+      "event": "trackOrder",
+      "url": "https://shopapi.com/orderStatus",
+      "method": "GET"
+    },
+    {
+      "event": "recommendProduct",
+      "url": "https://shopapi.com/productRecommendation",
+      "method": "POST"
+    }
+  ]
+}
+```
+
+---
+
+## Sales / CRM
+
+Sales agents can automate lead handling, scheduling, and demo bookings.
+
+**Configuration:**
+
+* **Agent Name:** SalesMate
+* **Company:** CDial Sales Solutions
+* **Industry:** Sales / CRM
+* **Languages:** English
+* **Voice Texture:** Male
+* **Tasks:** Lead qualification, meeting scheduling, product demos
+
+**Webhook Setup:**
+
+* New lead → `https://crmapi.com/newLead`
+* Meeting scheduling → `https://calendarapi.com/scheduleMeeting`
+
+```json
+{
+  "agentName": "SalesMate",
+  "company": "CDial Sales Solutions",
+  "industry": "Sales/CRM",
+  "language": ["English"],
+  "voiceTexture": "Male",
+  "tasks": [
+    "Lead qualification",
+    "Meeting scheduling",
+    "Product demos"
+  ],
+  "webhooks": [
+    {
+      "event": "newLead",
+      "url": "https://crmapi.com/newLead",
+      "method": "POST"
+    },
+    {
+      "event": "scheduleMeeting",
+      "url": "https://calendarapi.com/scheduleMeeting",
+      "method": "POST"
+    }
+  ]
+}
+```
 
