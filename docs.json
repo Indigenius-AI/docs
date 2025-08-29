@@ -27,7 +27,8 @@
               "AgentPro/Usecases",
               "AgentPro/Webcalling",
               "AgentPro/CoreModels",
-              "AgentPro/Widget"
+              "AgentPro/Widget",
+              "AgentPro/Telephony"
             ]
           }
         ]
