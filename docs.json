@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Indigenius AI",
   "colors": {
-    "primary": "#F79320",
-    "light": "#FFEDD5",
-    "dark": "#F79320"
+    "primary": "#2596be",
+    "light": "#67bed9",
+    "dark": "#1e81b0"
   },
   "favicon": "/images/CoverLogo-Indigenius.jpeg",
   "navigation": {
