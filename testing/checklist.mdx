@@ -1,0 +1,177 @@
+---
+title: "Testing Checklist"
+description: "A complete pre-launch checklist for validating your Indigenius voice AI agent."
+icon: "list-check"
+sidebarTitle: "Testing Checklist"
+---
+
+# Testing Checklist
+
+Before going live, every agent should pass a structured set of tests. Use this checklist to catch issues with audio quality, language switching, branch logic, escalations, and integrations.
+
+---
+
+## Pre-Launch Checklist
+
+### Agent Configuration
+
+- Agent name and purpose are clearly defined
+- System prompt is written and reviewed (see [Prompt Structure](/agent-setup/prompt-structure))
+- Knowledge base documents are uploaded and indexed
+- Branching logic has been mapped and saved
+- Primary language is set; additional languages are configured
+- Escalation paths (human transfer, callback, SMS) are configured
+- Fallback responses are defined for 3 or more unexpected inputs
+
+### Phone Setup
+
+- Phone number purchased and assigned to the agent
+- Inbound routing is configured (for inbound numbers)
+- Outbound caller ID is set (for outbound campaigns)
+- Retry logic is configured (max 2-3 retries, appropriate interval)
+- Business hours are set on the number
+- Voicemail message recorded or scripted (for missed calls)
+
+### Integrations
+
+- Zoho CRM is connected and authenticated
+- Field mapping is complete and verified
+- Initial contact sync has been run and contacts appear in Indigenius
+- CRM triggers are configured (if using automation)
+- Outcome logging is enabled and mapped to Zoho fields
+- SMS follow-up templates are written and saved
+- Email sender domain is verified (if using email follow-up)
+
+---
+
+## Test 1 — Quiet Environment Test
+
+**Goal:** Verify the agent responds correctly in ideal conditions.
+
+1. Call your test number from a quiet room
+2. Follow the expected conversation path step by step
+3. Verify:
+   - Agent greets correctly with the right name
+   - Questions are asked in the correct order
+   - Responses are accurate and on-brand
+   - Call ends gracefully
+4. Check the call transcript in **Logs** and compare to expected flow
+
+**Pass criteria:** Agent completes all steps without confusion, incorrect responses, or unexpected pauses.
+
+---
+
+## Test 2 — Noisy Environment Test
+
+**Goal:** Verify the agent handles background noise gracefully.
+
+1. Call from a location with background noise (street, cafe, fan running)
+2. Speak normally without raising your voice
+3. Verify:
+   - STT transcribes your speech accurately (check transcript)
+   - Agent does not mishear and go off-script
+   - If audio is unclear, agent asks for clarification rather than guessing
+
+**Pass criteria:** Agent handles 80%\+ of speech correctly. For unclear input, it asks for repetition rather than making assumptions.
+
+---
+
+## Test 3 — Language Switching Test
+
+**Goal:** Verify multilingual detection and switching works correctly.
+
+1. Start the call in English
+2. Switch to a secondary language mid-conversation (e.g., Yoruba, Hausa)
+3. Verify the agent detects the switch and responds in the new language
+4. Switch back to English and confirm the agent follows
+5. Test the fallback language by speaking an unconfigured language
+
+**Pass criteria:** Language switches happen within one exchange. Fallback language activates correctly.
+
+---
+
+## Test 4 — Branch Logic Validation
+
+**Goal:** Walk every path in your branching workflow at least once.
+
+For each branch:
+
+1. Say the trigger phrase/answer that activates that branch
+2. Verify the agent routes to the correct next step
+3. Test the fallback response for that branch (say something unexpected)
+4. Check the transcript to confirm branch routing was correct
+
+<Tip>
+  Create a simple test script mapping each branch to the answer you'll give. Tick each branch off as you test it.
+</Tip>
+
+**Pass criteria:** Every branch routes correctly. No dead ends or infinite loops.
+
+---
+
+## Test 5 — Callback Testing
+
+**Goal:** Verify callback scheduling and confirmation works end-to-end.
+
+1. During a test call, request a callback at a specific time
+2. Verify the agent confirms the callback time correctly
+3. Check the CRM record to confirm callback time was logged
+4. Confirm an SMS confirmation was sent (if configured)
+5. Manually trigger the callback from the platform and verify it calls back
+
+**Pass criteria:** Callback is logged, confirmed via SMS, and executes at the correct time.
+
+---
+
+## Test 6 — Reschedule Testing
+
+**Goal:** Verify appointment rescheduling works correctly.
+
+1. Book an appointment during a test call
+2. Receive the SMS confirmation
+3. Call again and request to reschedule
+4. Verify the agent offers alternative slots
+5. Confirm a new time and verify the CRM record is updated
+6. Verify a new SMS confirmation is sent with the updated time
+
+**Pass criteria:** Reschedule updates the CRM, sends a new SMS, and the old appointment is cancelled.
+
+---
+
+## Test 7 — Escalation Test
+
+**Goal:** Verify human transfer and fallback escalation work correctly.
+
+1. During a test call, say "I want to speak to a human"
+2. Verify the agent acknowledges and initiates transfer
+3. Confirm the call is transferred to your configured transfer number
+4. Test the 3-failure fallback: give 3 consecutive unclear/invalid responses
+5. Verify the agent escalates after the 3rd failure
+
+**Pass criteria:** Transfer connects correctly. Fallback escalates after defined failure threshold.
+
+---
+
+## Post-Test Review
+
+After completing all tests:
+
+1. Go to **Logs** and review all test call transcripts
+2. Identify any incorrect responses, misrouted branches, or failed integrations
+3. Update your agent prompt, workflow, or integration settings to address issues
+4. Re-test any failed items until all tests pass
+5. Mark your agent as **Ready for Production**
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Commercials" color="#2596be" icon="credit-card" href="/commercials/plans">
+    Review plan limits and upgrade to the right tier for your campaign volume.
+  </Card>
+
+  <Card title="Support" color="#2596be" icon="life-ring" href="/support/overview">
+    Get setup assistance or escalate issues to the Indigenius team.
+  </Card>
+</CardGroup>

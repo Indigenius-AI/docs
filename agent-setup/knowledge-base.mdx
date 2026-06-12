@@ -1,0 +1,108 @@
+---
+title: "Knowledge Base"
+description: "Upload and manage documents that your AI agent can reference during live calls."
+icon: "book"
+sidebarTitle: "Knowledge Base"
+---
+
+# Knowledge Base
+
+The **Knowledge Base** allows your agent to answer caller questions accurately by referencing uploaded documents, FAQs, and product information — rather than relying solely on its system prompt.
+
+---
+
+## What Can You Upload?
+
+| File Type | Use Case |
+| --- | --- |
+| PDF | Product brochures, price lists, policy documents |
+| DOCX | FAQs, scripts, onboarding guides |
+| TXT | Short reference notes, quick-answer sheets |
+| CSV | Structured data like product catalogs or service tiers |
+
+<Warning>
+  Files larger than **10 MB** may slow down agent response times. Break large documents into smaller, topic-focused files for best results.
+</Warning>
+
+---
+
+## How to Upload Documents
+
+1. Go to **Agents** in the sidebar and open your agent
+2. Click the **Knowledge Base** tab
+3. Click **Upload Document**
+4. Select your file (PDF, DOCX, TXT, or CSV)
+5. Add an optional **Description** to help the agent understand what the file contains
+6. Click **Save**
+
+The document is processed and indexed automatically. This usually takes less than 30 seconds.
+
+---
+
+## Structuring Your Knowledge Base
+
+For best retrieval performance, follow these guidelines:
+
+### Use clear, descriptive headings
+
+The agent uses headings to find relevant sections. A document titled "Frequently Asked Questions About Solar Panel Maintenance" will outperform one titled "Doc\_v3\_final\_REVISED.pdf".
+
+### Keep topics separate
+
+Don't combine pricing, installation guides, and warranty policies into one document. Create one file per topic.
+
+### Use plain language
+
+Avoid heavy jargon or legal language unless your callers are industry specialists. The agent mirrors the language in your documents.
+
+---
+
+## Sample FAQ Document Structure
+
+```text
+# Acme Solar - Frequently Asked Questions
+
+## Installation
+**Q: How long does installation take?**
+A: A standard residential installation takes 1-2 days. Commercial installations take 3-5 days.
+
+**Q: Do I need to be home during installation?**
+A: Yes, an adult must be present on Day 1 for property access and final sign-off.
+
+## Pricing
+**Q: What is the price range for a residential system?**
+A: Our residential systems range from ₦1.2 million to ₦4.5 million depending on capacity.
+
+**Q: Do you offer payment plans?**
+A: Yes, we offer 12, 24, and 36-month financing options through our banking partners.
+```
+
+---
+
+## Managing Existing Documents
+
+- **Update:** Re-upload a new version of the file. The old version is replaced automatically.
+- **Delete:** Click the trash icon next to the document. Changes take effect immediately.
+- **Preview:** Click the document name to preview its indexed content.
+
+<Tip>
+  After updating your knowledge base, run a test call and ask the agent a question that requires the new information to verify it's working correctly.
+</Tip>
+
+---
+
+## Troubleshooting
+
+**My agent is not using the knowledge base.** Make sure your system prompt instructs the agent to use its knowledge base. Add a line like: _"Use your knowledge base to answer product and pricing questions."_
+
+**The agent gives outdated answers.** Delete the old document and re-upload the updated version. Cached responses can take up to 5 minutes to refresh.
+
+**The agent hallucinates facts not in the document.** Add a constraint to your prompt: _"Only answer questions using information from your knowledge base. If you don't know, say so honestly."_
+
+---
+
+## What's Next?
+
+<Card title="Branching Logic" color="#2596be" icon="code-branch" href="/agent-setup/branching-logic">
+  Define decision trees for complex conversational flows.
+</Card>

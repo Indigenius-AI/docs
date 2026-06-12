@@ -1,0 +1,86 @@
+---
+title: "CRM Integration Overview"
+description: "Connect Indigenius to your CRM to sync contacts, trigger calls, and log outcomes automatically."
+icon: "plug"
+sidebarTitle: "Overview"
+---
+
+# CRM Integration
+
+Indigenius integrates natively with **Zoho CRM**, enabling a fully automated loop between your CRM data and your voice AI campaigns.
+
+---
+
+## What the Integration Does
+
+| Feature | Description |
+| --- | --- |
+| **Contact Sync** | Import contacts from Zoho directly into Indigenius |
+| **Call Triggers** | Trigger outbound calls when a CRM record changes status |
+| **Field Mapping** | Map Zoho fields to Indigenius contact variables |
+| **Outcome Logging** | Write call results, transcripts, and scores back to Zoho |
+| **Two-Way Sync** | Updates in either system stay in sync automatically |
+
+---
+
+## Integration Flow
+
+```text
+Zoho CRM Lead Created
+       ↓
+Indigenius syncs contact
+       ↓
+Campaign trigger fires → Agent calls lead
+       ↓
+Call outcome logged → Zoho record updated
+       ↓
+Sales team notified of HOT LEADS
+```
+
+---
+
+## Getting Started
+
+<Steps>
+  <Step title="Connect Zoho CRM">
+    Authenticate your Zoho account using OAuth from the Integrations panel. See [Zoho CRM Setup](/crm-integration/zoho-setup).
+  </Step>
+  <Step title="Map your fields">
+    Match Zoho fields (e.g., Mobile, Lead Status) to Indigenius variables. See [Field Mapping](/crm-integration/field-mapping).
+  </Step>
+  <Step title="Sync contacts">
+    Run an initial full sync, then enable real-time or scheduled sync. See [Contact Sync](/crm-integration/contact-sync).
+  </Step>
+  <Step title="Set up call triggers">
+    Configure which CRM events should trigger an outbound call. See [Triggering Calls from CRM](/crm-integration/trigger-calls).
+  </Step>
+  <Step title="Log outcomes back">
+    Configure which call data gets written back to Zoho CRM records. See [Logging Call Outcomes](/crm-integration/log-outcomes).
+  </Step>
+</Steps>
+
+---
+
+## Pages in This Section
+
+<CardGroup cols={2}>
+  <Card title="Zoho CRM Setup" color="#2596be" icon="database" href="/crm-integration/zoho-setup">
+    Authenticate Zoho and configure your integration settings.
+  </Card>
+
+  <Card title="Field Mapping" color="#2596be" icon="arrows-left-right" href="/crm-integration/field-mapping">
+    Map Zoho CRM fields to Indigenius contact variables.
+  </Card>
+
+  <Card title="Contact Sync" color="#2596be" icon="rotate" href="/crm-integration/contact-sync">
+    Import and sync contacts between Zoho and Indigenius.
+  </Card>
+
+  <Card title="Trigger Calls from CRM" color="#2596be" icon="phone-volume" href="/crm-integration/trigger-calls">
+    Fire outbound calls automatically based on CRM events.
+  </Card>
+
+  <Card title="Log Call Outcomes" color="#2596be" icon="clipboard-list" href="/crm-integration/log-outcomes">
+    Write call results, scores, and transcripts back to Zoho.
+  </Card>
+</CardGroup>

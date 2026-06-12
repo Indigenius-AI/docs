@@ -1,0 +1,92 @@
+---
+title: "Contact Synchronisation"
+description: "Import and keep contacts in sync between Zoho CRM and Indigenius."
+icon: "rotate"
+sidebarTitle: "Contact Sync"
+---
+
+# Contact Synchronisation
+
+Contact sync keeps your Indigenius contact lists up to date with your Zoho CRM records — automatically.
+
+---
+
+## Initial Sync
+
+After [connecting Zoho CRM](/crm-integration/zoho-setup) and [mapping fields](/crm-integration/field-mapping), run your initial sync:
+
+1. Go to **Integrations → Zoho CRM → Sync**
+2. Click **Run Full Sync**
+3. Choose which module to sync: **Leads**, **Contacts**, or **Both**
+4. Apply filters if needed (e.g., only sync `Lead Status = New`)
+5. Click **Start Sync**
+
+The sync progress is shown in real-time. Large lists (10,000\+ contacts) may take 2–5 minutes.
+
+<Tip>
+  For your first sync, apply a filter to import only **active or recent** records. Avoid importing your entire CRM history, as this can create noise in your campaigns.
+</Tip>
+
+---
+
+## Sync Filters
+
+You can filter which records sync from Zoho:
+
+| Filter Type | Example |
+| --- | --- |
+| By Status | `Lead Status = New` or `Lead Status = Contacted` |
+| By Date | `Created Date is after 01/01/2025` |
+| By Source | `Lead Source = Website` |
+| By Owner | `Lead Owner = [Your Name]` |
+| By Tag | Custom Zoho tags |
+
+---
+
+## Real-Time Sync
+
+With real-time sync enabled, new Zoho records are added to Indigenius immediately via **webhooks**:
+
+1. Go to **Integrations → Zoho → Settings**
+2. Set **Sync Mode: Real-Time**
+3. Indigenius registers a webhook in your Zoho account automatically
+4. From this point, every new Lead/Contact in Zoho appears in Indigenius within seconds
+
+---
+
+## Scheduled Sync
+
+For less real-time needs, use scheduled sync:
+
+- **Every 1 hour** — good for active campaigns
+- **Every 6 hours** — balanced performance
+- **Daily at midnight** — low-overhead option for batch campaigns
+
+---
+
+## Handling Duplicates
+
+Indigenius uses **phone number** as the unique identifier to detect duplicates.
+
+| Scenario | Behaviour |
+| --- | --- |
+| Same phone, different name | Keeps the most recent record |
+| Same phone, different email | Merges the records |
+| Exact duplicate | Skipped silently |
+
+---
+
+## Deleting Synced Contacts
+
+If a contact is deleted from Zoho:
+
+- With **bidirectional sync**: the contact is archived in Indigenius (not deleted)
+- To fully delete: go to **Contacts**, search for the record, and click **Delete**
+
+---
+
+## What's Next?
+
+<Card title="Triggering Calls from CRM" color="#2596be" icon="phone-volume" href="/crm-integration/trigger-calls">
+  Fire outbound calls automatically when a CRM record changes.
+</Card>

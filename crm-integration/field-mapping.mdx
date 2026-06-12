@@ -1,0 +1,90 @@
+---
+title: "Field Mapping"
+description: "Map Zoho CRM fields to Indigenius contact variables for accurate data sync."
+icon: "arrows-left-right"
+sidebarTitle: "Field Mapping"
+---
+
+# Field Mapping
+
+**Field Mapping** tells Indigenius which Zoho CRM fields correspond to which contact variables. Without proper mapping, contact data may be incomplete or missing during campaigns.
+
+---
+
+## Default Field Mappings
+
+Indigenius automatically maps the most common Zoho fields on first connection:
+
+| Zoho CRM Field | Indigenius Variable | Notes |
+| --- | --- | --- |
+| First Name | `{{first_name}}` | Auto-mapped |
+| Last Name | `{{last_name}}` | Auto-mapped |
+| Mobile | `{{phone}}` | Auto-mapped |
+| Email | `{{email}}` | Auto-mapped |
+| Lead Status | `{{lead_status}}` | Auto-mapped |
+| Lead Source | `{{lead_source}}` | Auto-mapped |
+| Account Name | `{{company}}` | Auto-mapped |
+
+---
+
+## Editing Field Mappings
+
+1. Go to **Integrations → Zoho CRM → Field Mapping**
+2. You'll see two columns: **Zoho Fields** (left) and **Indigenius Variables** (right)
+3. Click the dropdown in the Indigenius column to change the mapping
+4. To add a custom mapping, click **Add Field**:
+   - Select the Zoho field from the dropdown
+   - Type a new Indigenius variable name (e.g., `{{monthly_bill}}`)
+5. Click **Save Mappings**
+
+---
+
+## Custom Field Example
+
+If your Zoho CRM has a custom field called `Monthly Electricity Bill`:
+
+| Zoho Field | Indigenius Variable |
+| --- | --- |
+| Monthly Electricity Bill | `{{monthly_bill}}` |
+
+Then in your agent prompt:
+
+```text
+The lead's monthly electricity bill is {{monthly_bill}}. Use this to personalise the conversation.
+```
+
+---
+
+## Phone Number Formatting
+
+Indigenius requires phone numbers in **E.164 format** (e.g., `+2348012345678`).
+
+If your Zoho contacts store numbers without the country code (e.g., `08012345678`), enable **Auto-Format**:
+
+1. Go to **Field Mapping → Phone Field Settings**
+2. Toggle **Auto-Format to E.164: On**
+3. Set **Default Country Code**: `+234` (Nigeria) or your primary market
+4. Save
+
+<Warning>
+  Contacts without a valid phone number will be skipped during campaigns and logged as `INVALID_NUMBER`.
+</Warning>
+
+---
+
+## Required vs. Optional Fields
+
+| Field | Required? | Notes |
+| --- | --- | --- |
+| Phone | **Yes** | Campaign cannot dial without this |
+| First Name | Recommended | Used in personalised greetings |
+| Email | Optional | Required only for email follow-ups |
+| Lead Status | Optional | Used for CRM-triggered campaigns |
+
+---
+
+## What's Next?
+
+<Card title="Contact Sync" color="#2596be" icon="rotate" href="/crm-integration/contact-sync">
+  Run your first contact sync from Zoho to Indigenius.
+</Card>

@@ -1,0 +1,113 @@
+---
+title: "Triggering Calls from CRM"
+description: "Automatically fire outbound calls when a Zoho CRM record changes status or meets a trigger condition."
+icon: "phone-volume"
+sidebarTitle: "Trigger Calls from CRM"
+---
+
+# Triggering Calls from CRM
+
+Instead of manually uploading contact lists and launching campaigns, you can configure Indigenius to **automatically call a contact** the moment a specific event occurs in Zoho CRM.
+
+---
+
+## How CRM Triggers Work
+
+```text
+Zoho CRM event fires (e.g., Lead Status → "Qualified")
+              ↓
+Indigenius webhook receives the event
+              ↓
+Indigenius matches contact to a campaign
+              ↓
+Agent calls the contact automatically
+              ↓
+Call outcome logged back to Zoho
+```
+
+---
+
+## Setting Up a CRM Trigger
+
+1. Go to **Integrations → Zoho CRM → Triggers**
+2. Click **New Trigger**
+3. Configure the trigger:
+
+| Setting | Description |
+| --- | --- |
+| **Trigger Name** | A label for this trigger (e.g., "New Lead Auto-Call") |
+| **Module** | Leads or Contacts |
+| **Event** | `Record Created`, `Field Updated`, or `Workflow Triggered` |
+| **Condition** | The field value that fires the trigger (e.g., `Lead Status = New`) |
+| **Agent** | Which Indigenius agent makes the call |
+| **Caller ID** | Which phone number to call from |
+| **Delay** | Optional wait before the call is placed (e.g., 10 minutes) |
+
+4. Click **Save Trigger**
+
+---
+
+## Common Trigger Recipes
+
+### New Lead Auto-Call
+
+```text
+Event:     Lead Created
+Condition: Lead Source = Website Form
+Delay:     5 minutes
+Agent:     Lead Qualifier
+```
+
+### Post-Demo Follow-Up
+
+```text
+Event:     Lead Status Updated
+Condition: Lead Status = Demo Completed
+Delay:     1 hour
+Agent:     Follow-Up Agent
+```
+
+### Payment Reminder
+
+```text
+Event:     Custom Field Updated
+Condition: Payment Due Date = Tomorrow
+Delay:     0 (immediate)
+Agent:     Payment Reminder Agent
+```
+
+### Re-engagement Campaign
+
+```text
+Event:     Lead Status Updated
+Condition: Lead Status = Cold
+Delay:     24 hours
+Agent:     Re-engagement Agent
+```
+
+---
+
+## Suppression Rules
+
+To prevent calling the same contact twice:
+
+1. Enable **Suppression**: Go to **Triggers →** your trigger **→ Suppression**
+2. Set a **Cool-Down Period** (e.g., "Don't call this contact again for 7 days")
+3. Add **Exclusion Conditions** (e.g., skip contacts with `Do Not Call = Yes`)
+
+---
+
+## Testing a Trigger
+
+1. Go to your trigger and click **Test Trigger**
+2. Enter a test phone number (your own mobile)
+3. Click **Fire Test Call**
+4. Verify the agent calls within the configured delay
+
+---
+
+## What's Next?
+
+<Card title="Logging Call Outcomes" color="#2596be" icon="clipboard-list" href="/crm-integration/log-outcomes">
+  Write call results and transcripts back to Zoho CRM records.
+</Card>

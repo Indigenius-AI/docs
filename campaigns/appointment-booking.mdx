@@ -1,0 +1,115 @@
+---
+title: "Appointment Booking Flow"
+description: "Automate outbound booking calls and schedule meetings directly during the conversation."
+icon: "calendar-check"
+sidebarTitle: "Appointment Booking"
+---
+
+# Appointment Booking Flow
+
+The **Appointment Booking Flow** enables your AI agent to call contacts, check available slots, and confirm appointments — all within a single phone call.
+
+---
+
+## Prerequisites
+
+- An agent configured with a booking-focused prompt
+- A calendar integration (Google Calendar, Calendly, or manual slot management)
+- A contact list with names and phone numbers
+- SMS capability enabled on your account
+
+---
+
+## Sample Agent Prompt for Booking
+
+```text
+You are Kemi, a scheduling assistant for Acme Solar.
+Your goal is to book a free 30-minute site survey for qualified solar leads.
+
+Available appointment slots (use these exactly):
+- Monday to Friday: 9am, 11am, 2pm, 4pm
+- Saturday: 10am, 12pm
+
+Process:
+1. Confirm you're speaking with [Lead Name]
+2. Say: "Great news — you've been approved for a free solar site survey! I'd love to book a convenient time for one of our engineers to visit."
+3. Offer 2 available slots from the nearest 3 business days
+4. Confirm the chosen slot and collect the property address
+5. Say: "Perfect! I'll send a confirmation SMS right away. Is this the best number to reach you on?"
+6. End the call warmly
+
+If no slots work, offer to call back tomorrow with updated availability.
+```
+
+---
+
+## Setting Up the Booking Flow
+
+### Option A: Manual Slot List
+
+1. Maintain a text list of available slots in your agent's prompt (updated daily or weekly)
+2. Agent verbally offers slots and confirms via SMS after call
+3. Best for small teams with predictable availability
+
+### Option B: Calendar Integration
+
+1. Go to **Integrations → Calendar**
+2. Connect your **Google Calendar** or **Calendly** account
+3. Set your **booking duration** (e.g., 30 minutes)
+4. Set your **buffer time** between appointments (e.g., 15 minutes)
+5. The agent pulls live availability and books directly into your calendar
+
+---
+
+## SMS Confirmation Setup
+
+After every successful booking:
+
+1. Go to **Campaigns →** your campaign **→ Post-Call Actions**
+2. Enable **Send Booking Confirmation SMS**
+3. Write your SMS template:
+
+```text
+Hi {{first_name}}, your Acme Solar site survey is confirmed for {{appointment_date}} at {{appointment_time}}.
+Address: {{property_address}}.
+Questions? Call us: {{company_phone}}.
+```
+
+---
+
+## Handling Reschedule Requests
+
+Add this to your agent prompt:
+
+```text
+If the caller asks to reschedule:
+1. Apologise for the inconvenience
+2. Offer 3 alternative slots
+3. Confirm the new slot and resend the SMS confirmation
+4. Update the CRM record with the new appointment time
+```
+
+---
+
+## Tracking Bookings
+
+Go to **Campaigns → Results** to see:
+
+- Number of appointments booked
+- No-show rate (after cross-referencing with calendar)
+- Rescheduled appointments
+- Calls that resulted in declined bookings
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Customer Follow-Up" color="#2596be" icon="phone-arrow-up-right" href="/campaigns/customer-followup">
+    Re-engage customers after appointments or purchases.
+  </Card>
+
+  <Card title="SMS & Email Follow-Up" color="#2596be" icon="envelope" href="/campaigns/sms-email-followup">
+    Automate post-call SMS and email sequences.
+  </Card>
+</CardGroup>

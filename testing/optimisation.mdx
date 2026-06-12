@@ -1,0 +1,118 @@
+---
+title: "Optimising Performance"
+description: "Use call logs, transcripts, and metrics to continuously improve your AI agent's performance."
+icon: "chart-line"
+sidebarTitle: "Optimising Performance"
+---
+
+# Optimising Performance
+
+Launching your agent is just the beginning. The best-performing agents are continuously refined based on real call data. This guide shows you how to analyse your logs and make targeted improvements.
+
+---
+
+## Key Performance Metrics
+
+Monitor these metrics in **Logs → Analytics**:
+
+| Metric | What It Measures | Target |
+| --- | --- | --- |
+| **Connection Rate** | % of outbound calls answered | \> 40% |
+| **Completion Rate** | % of connected calls that reach the end | \> 70% |
+| **Qualification Rate** | % of connected calls resulting in a qualified lead | Depends on industry |
+| **Booking Rate** | % of qualified leads that book an appointment | \> 50% |
+| **Escalation Rate** | % of calls transferred to a human | \< 15% |
+| **Fallback Rate** | % of turns where the agent fell back | \< 5% |
+| **Average Call Duration** | Mean duration of connected calls | 2–4 minutes |
+
+---
+
+## Reading Call Transcripts
+
+Transcripts are your most valuable optimisation tool. For each call:
+
+1. Go to **Logs** and click any call entry
+2. Read the full transcript from start to finish
+3. Look for:
+   - Points where the caller seemed confused
+   - Questions the agent couldn't answer
+   - Branches that routed incorrectly
+   - Responses that felt unnatural or off-brand
+   - Missed escalation opportunities
+4. Take notes and batch your fixes before updating the prompt
+
+---
+
+## Common Issues and Fixes
+
+<AccordionGroup>
+  <Accordion title="Agent keeps repeating the same question">
+    The agent didn't detect the caller's answer as a valid response. Fix: Add more example phrasings to your branching logic. E.g., instead of only recognising "yes", also accept "sure", "okay", "of course", "definitely".
+  </Accordion>
+
+  <Accordion title="High fallback rate on a specific question">
+    The question is ambiguous or the caller doesn't understand it. Fix: Rephrase the question more simply, or offer a choice: "Would you say your bill is above or below 30,000 Naira per month?"
+  </Accordion>
+
+  <Accordion title="Agent gives wrong information">
+    The knowledge base document is outdated or the prompt doesn't constrain the agent enough. Fix: Update the knowledge base document and add: "Only answer from your knowledge base. Do not guess."
+  </Accordion>
+
+  <Accordion title="Low connection rates on outbound calls">
+    Check your call timing. Most contacts answer between 10am–12pm and 3pm–5pm on weekdays. Avoid Mondays and Fridays. Also rotate caller IDs if one number is getting spam-flagged.
+  </Accordion>
+
+  <Accordion title="Agent doesn't switch languages correctly">
+    Check that Auto-Detect Language is enabled and the language is listed under Additional Languages. Also add a language preference question at the call start.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Prompt Iteration Workflow
+
+```text
+Review 20-30 call transcripts
+         ↓
+Identify top 3 recurring issues
+         ↓
+Write prompt changes to address each issue
+         ↓
+Run 10 test calls
+         ↓
+Review new transcripts
+         ↓
+Measure metric change
+         ↓
+Repeat
+```
+
+<Note>
+  Make one change at a time. If you change multiple things simultaneously, you won't know which change drove the improvement.
+</Note>
+
+---
+
+## A/B Testing
+
+Test two versions of your agent prompt against each other:
+
+1. Create a duplicate agent with the updated prompt
+2. Split your contact list 50/50 between the two agents
+3. Run both campaigns simultaneously
+4. Compare connection rate, completion rate, and qualification rate
+5. Adopt the better-performing prompt as your production version
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Commercials" color="#2596be" icon="credit-card" href="/commercials/plans">
+    Scale up your plan as campaign volume grows.
+  </Card>
+
+  <Card title="Support" color="#2596be" icon="life-ring" href="/support/overview">
+    Get expert help optimising your agent configuration.
+  </Card>
+</CardGroup>

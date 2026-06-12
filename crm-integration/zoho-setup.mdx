@@ -1,0 +1,103 @@
+---
+title: "Zoho CRM Setup"
+description: "Authenticate Zoho CRM and configure your Indigenius integration settings."
+icon: "database"
+sidebarTitle: "Zoho CRM Setup"
+---
+
+# Zoho CRM Setup
+
+This guide walks you through authenticating your Zoho CRM account and connecting it to Indigenius.
+
+---
+
+## Prerequisites
+
+- An active Zoho CRM account (Standard plan or above)
+- Zoho CRM Administrator access
+- Your Indigenius account on a **Prime** or **Enterprise** plan
+
+<Note>
+  CRM integration is not available on the **Cool** or **Free Trial** plans. See [Commercials](/commercials/plans) to upgrade.
+</Note>
+
+---
+
+## Step 1 — Open Integrations
+
+1. Log in to your [Indigenius Dashboard](https://agent.indigenius.ai/dashboard)
+2. Click **Integrations** in the left sidebar
+3. Click the **Zoho CRM** tile
+4. Click **Connect Zoho CRM**
+
+---
+
+## Step 2 — Authenticate with OAuth
+
+1. You'll be redirected to the Zoho login page
+2. Log in with your Zoho CRM Administrator credentials
+3. On the permissions screen, review the requested scopes:
+   - `ZohoCRM.modules.leads.ALL` — read and write access to Leads
+   - `ZohoCRM.modules.contacts.ALL` — read and write access to Contacts
+   - `ZohoCRM.settings.fields.READ` — read field definitions
+4. Click **Accept**
+5. You'll be redirected back to Indigenius with a **✅ Connected** status
+
+<Warning>
+  Do NOT refresh the page during the OAuth redirect flow. If the connection fails, return to Integrations and click **Reconnect**.
+</Warning>
+
+---
+
+## Step 3 — Configure Integration Settings
+
+After connecting:
+
+1. Choose your **Primary Module**: `Leads` or `Contacts` (or both)
+2. Set your **Sync Direction**:
+   - `Zoho → Indigenius only` — contacts flow into Indigenius but outcomes are NOT written back
+   - `Bidirectional` — full two-way sync (recommended)
+3. Set **Sync Frequency**:
+   - `Real-time` — new records in Zoho trigger immediate sync (webhook-based)
+   - `Every 1 hour`
+   - `Daily at midnight`
+4. Click **Save Settings**
+
+---
+
+## Step 4 — Verify the Connection
+
+1. In Zoho CRM, create a test Lead with a valid Nigerian phone number
+2. Return to Indigenius **→ Contacts**
+3. The test contact should appear within 60 seconds (real-time) or at next sync
+4. If it doesn’t appear, click **Integrations → Zoho → Sync Now** to trigger a manual sync
+
+---
+
+## Disconnecting Zoho CRM
+
+1. Go to **Integrations → Zoho CRM**
+2. Click **Disconnect**
+3. Confirm the action
+
+<Warning>
+  Disconnecting pauses all CRM-triggered automations and contact syncs. Existing contacts in Indigenius are retained, but no new ones will be added until you reconnect.
+</Warning>
+
+---
+
+## Troubleshooting
+
+**Connection failed during OAuth.** Ensure you’re logged into Zoho as an Administrator, not a regular user. Only Admins can grant API access.
+
+**Contacts not syncing.** Check that the sync direction is set to `Bidirectional` or `Zoho → Indigenius`. Also verify that your contacts have a valid phone number field populated.
+
+**"Invalid token" error.** Zoho OAuth tokens expire after 60 minutes of inactivity. Go to **Integrations → Zoho** and click **Refresh Token**.
+
+---
+
+## What's Next?
+
+<Card title="Field Mapping" color="#2596be" icon="arrows-left-right" href="/crm-integration/field-mapping">
+  Map Zoho CRM fields to Indigenius contact variables.
+</Card>
