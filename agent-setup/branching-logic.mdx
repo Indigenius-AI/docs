@@ -1,0 +1,102 @@
+---
+title: "Branching Logic"
+description: "Build multi-step conversational decision trees for your AI agent."
+icon: "code-branch"
+sidebarTitle: "Branching Logic"
+---
+
+# Branching Logic
+
+**Branching Logic** lets you define conditional paths in your agent's conversation flow — so the agent says different things depending on what the caller says.
+
+This is how you build structured workflows like lead qualification funnels, appointment booking flows, and survey sequences.
+
+---
+
+## How Branching Works
+
+A branch is a decision point in the conversation. At each branch:
+
+1. The agent asks a question or makes a statement
+2. The caller responds
+3. The agent routes to the next step based on the response
+
+```text
+[Start]
+  ↓
+Agent: "Are you the property owner?"
+  ├─ Yes → Ask about electricity bill
+  ├─ No  → Ask for owner's contact
+  └─ Not sure → Explain eligibility and ask again
+```
+
+---
+
+## Configuring Branches
+
+1. Go to **Agents →** select your agent **→ Workflow** tab
+2. Click **Add Step**
+3. Choose a **Step Type**:
+   - **Ask** — agent asks a question and waits for a response
+   - **State** — agent makes a statement (no expected response)
+   - **Transfer** — agent transfers the call to a phone number or team
+   - **End** — agent ends the call
+4. Add the **Response Conditions** (e.g., "if caller says yes", "if caller mentions a price above X")
+5. Connect each condition to the next step
+6. Save your workflow
+
+---
+
+## Example: Lead Qualification Branch
+
+```text
+Step 1 - Greeting
+  Agent: "Hello, this is Amara from Acme Solar. Am I speaking with [Name]?"
+  ├─ Yes → Step 2
+  └─ No  → Apologise and End Call
+
+Step 2 - Property Type
+  Agent: "Great! Is your property residential or commercial?"
+  ├─ Residential → Step 3A
+  └─ Commercial   → Step 3B
+
+Step 3A - Residential Bill
+  Agent: "What is your average monthly electricity bill?"
+  ├─ Above ₦30k → Book Appointment (Step 4)
+  └─ Below ₦30k → Not Qualified (Step 5)
+
+Step 3B - Commercial Transfer
+  Agent: "Let me connect you with our commercial team."
+  → Transfer to +234-XXX-XXXX
+
+Step 4 - Book Appointment
+  Agent: "I'd love to schedule a free site survey for you..."
+  → Collect date/time → Confirm via SMS → End Call
+
+Step 5 - Not Qualified
+  Agent: "Thank you for your time. We'll be in touch when we have plans that suit your usage."
+  → End Call
+```
+
+---
+
+## Best Practices
+
+- **Keep branches shallow.** Aim for no more than 5 decision levels deep. Deep trees are hard to maintain and confuse callers.
+- **Handle "I don't know" responses.** Always add a fallback branch for vague or unclear answers.
+- **Test every path.** Walk through every branch manually before going live. See [Testing Checklist](/testing/checklist).
+- **Use the prompt for nuance.** Branching logic handles the structure; your system prompt handles tone and style.
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Language Preferences" color="#2596be" icon="language" href="/agent-setup/language-preferences">
+    Configure multilingual support and language-switching behavior.
+  </Card>
+
+  <Card title="Escalation & Fallback" color="#2596be" icon="arrow-up-right-dots" href="/agent-setup/escalation">
+    Define what happens at the limits of your agent's knowledge.
+  </Card>
+</CardGroup>

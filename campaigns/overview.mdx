@@ -1,0 +1,83 @@
+---
+title: "Campaign Workflows Overview"
+description: "Design and launch outbound calling, SMS, and email campaign workflows at scale."
+icon: "bullhorn"
+sidebarTitle: "Overview"
+---
+
+# Campaign Workflows
+
+Campaigns are how you deploy your Indigenius agent **at scale**. Instead of waiting for calls to come in, campaigns proactively dial a list of contacts and work through structured conversation flows.
+
+---
+
+## What Is a Campaign?
+
+A campaign combines:
+
+- A **contact list** (who to call)
+- An **agent** (who makes the call)
+- A **phone number** (what number to call from)
+- A **workflow** (what happens during and after the call)
+- A **schedule** (when to make the calls)
+
+---
+
+## Campaign Types
+
+| Campaign Type | Description |
+| --- | --- |
+| **Lead Qualification** | Call leads and score them based on their responses |
+| **Appointment Booking** | Call prospects and schedule meetings directly on the call |
+| **Customer Follow-Up** | Re-engage existing customers with updates or offers |
+| **SMS Follow-Up** | Send SMS messages after a call or trigger event |
+| **Email Follow-Up** | Send personalised emails after a call outcome |
+
+---
+
+## Creating a Campaign
+
+1. Go to **Campaigns → New Campaign**
+2. Enter a **Campaign Name**
+3. Select your **Agent**
+4. Select your **Phone Number** (outbound caller ID)
+5. Upload or select your **Contact List**
+6. Choose your **Campaign Type**
+7. Configure the **Schedule** (start date/time, call window, timezone)
+8. Set **Retry Logic** (see [Retry Logic](/phone-setup/retry-logic))
+9. Click **Launch Campaign** or **Save as Draft**
+
+---
+
+## Campaign Status
+
+| Status | Meaning |
+| --- | --- |
+| **Draft** | Created but not yet launched |
+| **Scheduled** | Will launch at the configured start time |
+| **Active** | Currently making calls |
+| **Paused** | Temporarily stopped; can be resumed |
+| **Completed** | All contacts attempted; campaign ended |
+| **Archived** | Stored for reference; no further action |
+
+---
+
+## Workflow Pages
+
+<CardGroup cols={2}>
+  <Card title="Lead Qualification" color="#2596be" icon="filter" href="/campaigns/lead-qualification">
+    Build a workflow to call, qualify, and score inbound leads.
+  </Card>
+
+  <Card title="Appointment Booking" color="#2596be" icon="calendar-check" href="/campaigns/appointment-booking">
+    Automate outbound booking calls with live calendar integration.
+  </Card>
+
+  <Card title="Customer Follow-Up" color="#2596be" icon="phone-arrow-up-right" href="/campaigns/customer-followup">
+    Re-engage customers after purchases, demos, or support tickets.
+  </Card>
+
+  <Card title="SMS & Email Follow-Up" color="#2596be" icon="envelope" href="/campaigns/sms-email-followup">
+    Configure post-call SMS and email automations.
+  </Card>
+</CardGroup>

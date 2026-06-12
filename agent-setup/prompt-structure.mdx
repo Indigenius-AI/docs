@@ -1,0 +1,142 @@
+---
+title: "Prompt Structure"
+description: "How to write effective system prompts for your Indigenius voice AI agents."
+icon: "file-lines"
+sidebarTitle: "Prompt Structure"
+---
+
+# Prompt Structure
+
+Your system prompt is the **brain of your agent**. It determines how the agent introduces itself, what questions it asks, how it responds to different answers, and when it hands off to a human.
+
+A well-written prompt produces consistent, professional, on-brand conversations. A poor prompt produces confused, repetitive, or off-topic agents.
+
+---
+
+## Anatomy of a Good System Prompt
+
+A production-quality prompt has five sections:
+
+### 1. Identity Block
+
+Tell the agent who it is, who it works for, and its primary role.
+
+```text
+You are Amara, an AI voice assistant for Acme Ltd., a solar energy company based in Lagos, Nigeria.
+Your role is to qualify inbound leads who have expressed interest in our solar panel installation services.
+```
+
+### 2. Objective Block
+
+State clearly what the agent must accomplish in each call.
+
+```text
+Your goal is to:
+1. Confirm the caller's name and contact number
+2. Understand their property type (residential or commercial)
+3. Estimate their monthly electricity bill
+4. Book a free site survey appointment if they qualify
+```
+
+### 3. Tone & Style Block
+
+Define how the agent speaks.
+
+```text
+Speak in a warm, professional, conversational tone.
+Use short sentences. Do not use jargon.
+Always address the caller by their first name after they provide it.
+Speak at a natural pace — do not rush.
+```
+
+### 4. Rules & Constraints Block
+
+Set hard boundaries on what the agent can and cannot do.
+
+```text
+Do NOT:
+- Discuss competitor pricing
+- Make promises about installation timelines
+- Share internal pricing data
+- Continue the call if the caller becomes abusive
+
+DO:
+- Offer to transfer to a human agent if the caller requests it
+- Log the call outcome after every interaction
+- Confirm appointments via SMS after booking
+```
+
+### 5. Fallback Block
+
+Tell the agent what to do when it's confused or the caller goes off-script.
+
+```text
+If you do not understand the caller's request after two attempts, say:
+"I want to make sure I help you correctly. Let me connect you with one of our team members."
+Then trigger the human transfer action.
+```
+
+---
+
+## Full Example Prompt
+
+```text
+You are Amara, a voice AI agent for Acme Solar Ltd. Your role is to call leads who have 
+filled out our website contact form and qualify them for a free solar panel consultation.
+
+Objective:
+1. Greet the caller and confirm you're speaking with [Lead Name]
+2. Ask about their property type (residential or commercial)
+3. Ask for their average monthly electricity bill
+4. If the bill is above ₦30,000 and property is residential, book a site survey
+5. If commercial, transfer to the commercial sales team
+6. Confirm the appointment time and send an SMS summary
+
+Tone: Warm, professional, Nigerian-English friendly. Avoid overly formal language.
+
+Do NOT discuss competitor products or make guarantees about savings.
+If asked about pricing, say: "Our consultant will provide a full quote during the site visit."
+
+If the caller is not available, ask for a better callback time and log it.
+If the caller is aggressive, end the call politely and log the outcome as 'Do Not Contact'.
+```
+
+---
+
+## Prompt Best Practices
+
+<AccordionGroup>
+  <Accordion title="Be specific, not general">
+    Vague prompts produce vague agents. Instead of "help users with their questions", write "answer questions about our solar panel installation process, pricing range, and warranty policy."
+  </Accordion>
+
+  <Accordion title="Use numbered steps for flows">
+    Numbered lists help the LLM follow sequential logic. Use them for qualification steps, booking flows, and data collection sequences.
+  </Accordion>
+
+  <Accordion title="Test with edge cases">
+    Always test what happens when a caller says something unexpected — “I don't know”, “I changed my mind”, or “can I speak to a manager?”. Add explicit instructions for each.
+  </Accordion>
+
+  <Accordion title="Keep it under 800 words">
+    Very long prompts can confuse the model. If your logic is complex, use the [Branching Logic](/agent-setup/branching-logic) feature instead of embedding everything in the prompt.
+  </Accordion>
+
+  <Accordion title="Iterate based on call logs">
+    After every test run, read the transcripts in **Logs**. Identify where the agent went off-script and update the prompt accordingly.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Knowledge Base" color="#2596be" icon="book" href="/agent-setup/knowledge-base">
+    Upload documents your agent can reference during calls.
+  </Card>
+
+  <Card title="Branching Logic" color="#2596be" icon="code-branch" href="/agent-setup/branching-logic">
+    Build decision trees for complex call flows.
+  </Card>
+</CardGroup>

@@ -1,0 +1,107 @@
+---
+title: "Retry & Missed Call Logic"
+description: "Configure automatic retry attempts and missed-call handling for outbound campaigns."
+icon: "rotate-right"
+sidebarTitle: "Retry & Missed Call Logic"
+---
+
+# Retry & Missed Call Logic
+
+Not every call connects on the first attempt. **Retry Logic** defines how Indigenius handles unanswered, busy, or failed calls. **Missed-Call Handling** defines what happens on your inbound numbers when no one picks up.
+
+---
+
+## Outbound Retry Logic
+
+For outbound campaigns, you can configure automatic retry attempts:
+
+### Retry Configuration
+
+1. Go to **Campaigns →** select your campaign **→ Settings**
+2. Under **Retry Logic**, configure:
+
+| Setting | Description | Recommended Value |
+| --- | --- | --- |
+| **Max Retries** | Number of retry attempts per contact | 2–3 |
+| **Retry Interval** | Minutes between retry attempts | 30–60 min |
+| **Retry on Busy** | Retry if line is busy | Yes |
+| **Retry on No Answer** | Retry if not picked up within 30s | Yes |
+| **Retry on Voicemail** | Retry if voicemail detected | Optional |
+| **Retry Window** | Hours during which retries can occur | 9am–6pm local |
+
+3. Click **Save Settings**
+
+<Warning>
+  Avoid retrying contacts more than **3 times per day**. Excessive retry attempts increase spam flags and may result in your number being blocked.
+</Warning>
+
+---
+
+## Retry Outcome Codes
+
+After each attempt, Indigenius logs one of these outcomes:
+
+| Code | Meaning |
+| --- | --- |
+| `CONNECTED` | Call was answered and completed |
+| `NO_ANSWER` | Rang out, no pickup |
+| `BUSY` | Line was busy |
+| `VOICEMAIL` | Call went to voicemail |
+| `INVALID_NUMBER` | Number is disconnected or invalid |
+| `REJECTED` | Caller declined the call |
+| `FAILED` | Network or system error |
+
+---
+
+## Voicemail Handling
+
+When a call goes to voicemail, you have three options:
+
+1. **Leave a voicemail message** — the agent plays a pre-recorded or TTS message
+2. **Hang up and retry later** — no message left; contact retried in the next window
+3. **Mark as not reached** — log as `VOICEMAIL` and exclude from further retries
+
+### Configuring a Voicemail Message
+
+1. Go to **Campaigns → Settings → Voicemail**
+2. Toggle **Leave Voicemail: On**
+3. Choose **Text-to-Speech** or **Upload Audio**
+4. Write or upload your message
+   > _"Hi, this is Amara from Acme Solar. We tried to reach you about your solar panel inquiry. Please call us back on \[number\] or visit our website. Have a great day!"_
+5. Save
+
+---
+
+## Inbound Missed-Call Handling
+
+For inbound numbers, configure what happens when no agent answers (e.g., outside business hours or all agents busy):
+
+1. Go to **Phone Numbers →** click your number **→ Missed Call Settings**
+2. Choose a **Missed Call Action**:
+   - **Play voicemail greeting** and record a message
+   - **Send SMS callback** — auto-SMS the caller with a callback number or link
+   - **Log and alert** — add to a missed-call report and notify your team via email
+3. Set **Business Hours** — outside these hours, calls are treated as missed automatically
+
+---
+
+## Best Practices
+
+- **Always set a retry window.** Don’t retry contacts outside 9am–6pm local time.
+- **Stagger retries.** Use 30–60-minute intervals between attempts to seem less robotic.
+- **Review `INVALID_NUMBER` contacts.** These should be removed from your contact list or corrected.
+- **Test your voicemail message.** Call your own number and let it go to voicemail to hear exactly what your contacts will hear.
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Campaign Workflows" color="#2596be" icon="bullhorn" href="/campaigns/overview">
+    Set up and launch outbound calling campaigns.
+  </Card>
+
+  <Card title="Testing Checklist" color="#2596be" icon="list-check" href="/testing/checklist">
+    Verify retry logic and callback flows before launch.
+  </Card>
+</CardGroup>

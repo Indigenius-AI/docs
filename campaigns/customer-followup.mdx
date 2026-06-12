@@ -1,0 +1,79 @@
+---
+title: "Customer Follow-Up Flow"
+description: "Re-engage customers automatically after appointments, purchases, or support tickets."
+icon: "phone-arrow-up-right"
+sidebarTitle: "Customer Follow-Up"
+---
+
+# Customer Follow-Up Flow
+
+The **Customer Follow-Up Flow** uses your AI agent to proactively call existing customers — checking in after an installation, following up after a support ticket, or offering renewal/upgrade opportunities.
+
+---
+
+## Use Cases
+
+| Use Case | Trigger | Goal |
+| --- | --- | --- |
+| Post-installation check-in | 7 days after install | Confirm satisfaction, request review |
+| Support ticket follow-up | 24 hours after ticket closed | Confirm issue resolved |
+| Contract renewal reminder | 30 days before expiry | Offer renewal, prevent churn |
+| Upsell/Cross-sell | After first purchase | Introduce complementary products |
+| Payment reminder | 3 days before due date | Reduce late payments |
+
+---
+
+## Sample Prompt: Post-Installation Check-In
+
+```text
+You are Amara from Acme Solar, calling to check in with a customer 7 days after their solar panel installation.
+
+Goal: Confirm they're satisfied, address any concerns, and ask for an online review.
+
+Flow:
+1. Greet and confirm identity: "Hi, is this [Customer Name]? This is Amara from Acme Solar."
+2. Ask: "How has your solar system been performing since installation last week?"
+3. If positive: "Wonderful! Would you be willing to leave us a quick Google review? I can send you the link via SMS."
+4. If issues raised: "I'm sorry to hear that. Let me log this and have a technician call you within 24 hours." Then create a support ticket.
+5. Close warmly: "Thank you so much for choosing Acme Solar!"
+```
+
+---
+
+## Creating the Follow-Up Campaign
+
+1. Go to **Campaigns → New Campaign**
+2. Name it: `Post-Install Follow-Up — [Month]`
+3. Select your follow-up agent
+4. Upload your customer list (filtered by installation date)
+5. Set the call window: **Tuesday–Thursday, 10am–4pm** (avoid Mondays and Fridays for better pickup rates)
+6. Set retries: **1 retry, 24-hour interval**
+7. Launch
+
+---
+
+## CRM-Triggered Follow-Ups
+
+For automated triggers (e.g., call a customer 7 days after their CRM record shows `status: installed`):
+
+1. Go to **CRM Integration → Zoho** (see [CRM Integration](/crm-integration/overview))
+2. Create a **Workflow Trigger**: `When [Status] changes to [Installed]`
+3. Set action: `Wait 7 days → Trigger Indigenius Follow-Up Campaign`
+4. Map CRM fields to contact list variables
+
+---
+
+## Best Practices
+
+- **Call at the right time.** 24–48 hours after an event (ticket closure, installation) yields the highest response rates.
+- **Keep calls under 3 minutes.** Follow-up calls should be short and purposeful.
+- **Log every outcome.** Satisfaction scores, complaints, and review requests should all be written back to the CRM.
+- **Personalise the opening.** Reference the specific product, ticket number, or installation address to show the agent knows who they're calling.
+
+---
+
+## What's Next?
+
+<Card title="SMS & Email Follow-Up" color="#2596be" icon="envelope" href="/campaigns/sms-email-followup">
+  Configure automated SMS and email messages after call outcomes.
+</Card>

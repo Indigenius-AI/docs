@@ -1,0 +1,104 @@
+---
+title: "Lead Qualification Flow"
+description: "Build an automated call workflow to qualify, score, and route inbound leads."
+icon: "filter"
+sidebarTitle: "Lead Qualification"
+---
+
+# Lead Qualification Flow
+
+The **Lead Qualification Flow** uses your AI agent to call leads, ask structured qualification questions, score their responses, and route them appropriately — all without human involvement unless a lead meets your criteria.
+
+---
+
+## How It Works
+
+```text
+Lead submits form → Trigger call (manual or CRM) → Agent calls lead
+         ↓
+   Agent asks qualification questions
+         ↓
+   Lead scores High / Medium / Low
+         ↓
+   High  → Book appointment
+   Medium → SMS follow-up + add to nurture list
+   Low   → Log as unqualified
+```
+
+---
+
+## Step-by-Step Setup
+
+### 1. Define Your Qualification Criteria
+
+Before building the flow, decide what makes a lead qualified. Example:
+
+| Question | Qualified Answer |
+| --- | --- |
+| Are you the decision-maker? | Yes |
+| Monthly electricity bill? | Above ₦30,000 |
+| Property type? | Residential or Commercial |
+| Ready to install within 3 months? | Yes |
+
+### 2. Write the Agent Prompt
+
+Add a qualification scoring instruction to your agent's prompt:
+
+```text
+You are qualifying leads for Acme Solar. Ask these questions in order:
+1. "Are you the property owner or decision-maker for energy purchases?"
+2. "What is your average monthly electricity bill?"
+3. "Is your property residential or commercial?"
+4. "Are you looking to install within the next 3 months?"
+
+Score the lead:
+- All 4 answered positively = HOT LEAD → offer to book a site survey
+- 2-3 answered positively = WARM LEAD → offer to send more information via SMS
+- 1 or fewer = COLD LEAD → thank them and end the call politely
+
+Always log the outcome before ending the call.
+```
+
+### 3. Create the Campaign
+
+1. Go to **Campaigns → New Campaign**
+2. Name it: `Lead Qualification — [Month/Year]`
+3. Select your lead-qualification agent
+4. Upload your leads CSV (columns: `first_name`, `last_name`, `phone`, `email`, `source`)
+5. Set calling window: **Monday–Friday, 9am–5pm**
+6. Set retries: **2 attempts, 45-minute interval**
+7. Launch or schedule
+
+### 4. Configure Post-Call Automations
+
+For **HOT LEADS**: Trigger appointment booking flow (see [Appointment Booking](/campaigns/appointment-booking)) For **WARM LEADS**: Send SMS with your brochure link For **COLD LEADS**: Update CRM status to `Unqualified` and exclude from future campaigns
+
+---
+
+## Sample Contact CSV
+
+```csv
+first_name,last_name,phone,email,source
+Chidi,Okonkwo,+2348012345678,chidi@example.com,website_form
+Aisha,Bello,+2348098765432,aisha@example.com,referral
+Femi,Adeyemi,+2347011223344,femi@example.com,event
+```
+
+---
+
+## Monitoring Results
+
+After the campaign runs:
+
+1. Go to **Campaigns →** your campaign **→ Results**
+2. View breakdown by outcome: Connected, No Answer, Qualified, Unqualified
+3. Click any call to read the full transcript
+4. Export results as CSV for CRM import
+
+---
+
+## What's Next?
+
+<Card title="Appointment Booking Flow" color="#2596be" icon="calendar-check" href="/campaigns/appointment-booking">
+  Automatically schedule meetings during the qualification call.
+</Card>

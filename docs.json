@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "luma",
   "name": "Indigenius AI",
   "colors": {
     "primary": "#2596be",
-    "light": "#67bed9",
-    "dark": "#1e81b0"
+    "light": "#3ab5d6",
+    "dark": "#1a7a9e"
   },
   "favicon": "/images/CoverLogo-Indigenius.jpeg",
   "navigation": {
@@ -29,6 +29,82 @@
               "AgentPro/CoreModels",
               "AgentPro/Widget",
               "AgentPro/Telephony"
+            ]
+          },
+          {
+            "group": "Quick Start",
+            "icon": "rocket",
+            "pages": [
+              "quick-start/overview",
+              "quick-start/account-setup"
+            ]
+          },
+          {
+            "group": "Agent Setup",
+            "icon": "robot",
+            "pages": [
+              "agent-setup/overview",
+              "agent-setup/prompt-structure",
+              "agent-setup/knowledge-base",
+              "agent-setup/branching-logic",
+              "agent-setup/language-preferences",
+              "agent-setup/escalation"
+            ]
+          },
+          {
+            "group": "Phone Setup",
+            "icon": "phone",
+            "pages": [
+              "phone-setup/overview",
+              "phone-setup/nigerian-numbers",
+              "phone-setup/international-numbers",
+              "phone-setup/retry-logic"
+            ]
+          },
+          {
+            "group": "Campaign Workflows",
+            "icon": "bullhorn",
+            "pages": [
+              "campaigns/overview",
+              "campaigns/lead-qualification",
+              "campaigns/appointment-booking",
+              "campaigns/customer-followup",
+              "campaigns/sms-email-followup"
+            ]
+          },
+          {
+            "group": "CRM Integration",
+            "icon": "plug",
+            "pages": [
+              "crm-integration/overview",
+              "crm-integration/zoho-setup",
+              "crm-integration/field-mapping",
+              "crm-integration/contact-sync",
+              "crm-integration/trigger-calls",
+              "crm-integration/log-outcomes"
+            ]
+          },
+          {
+            "group": "Testing & QA",
+            "icon": "list-check",
+            "pages": [
+              "testing/checklist",
+              "testing/optimisation"
+            ]
+          },
+          {
+            "group": "Commercials",
+            "icon": "credit-card",
+            "pages": [
+              "commercials/plans"
+            ]
+          },
+          {
+            "group": "Support",
+            "icon": "life-ring",
+            "pages": [
+              "support/overview",
+              "support/troubleshooting"
             ]
           }
         ]
@@ -96,5 +172,9 @@
       "youtube": "https://www.youtube.com/@CDIAL_AI",
       "instagram": "https://www.instagram.com/indigenius.ai/"
     }
+  },
+  "description": "Launch Voice AI Agents in Minutes. Build, deploy, test, and scale multilingual voice AI agents using website widgets, phone calls, CRM integrations, and automated workflows.",
+  "search": {
+    "prompt": "Search documentation..."
   }
 }

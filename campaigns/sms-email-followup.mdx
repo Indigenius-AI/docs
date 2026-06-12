@@ -1,0 +1,129 @@
+---
+title: "SMS & Email Follow-Up"
+description: "Configure automated SMS and email messages triggered by call outcomes."
+icon: "envelope"
+sidebarTitle: "SMS & Email Follow-Up"
+---
+
+# SMS & Email Follow-Up
+
+After every call, Indigenius can automatically send **SMS messages** and **emails** to the contact based on the call outcome. This keeps your communication seamless and ensures no lead or customer falls through the cracks.
+
+---
+
+## How Post-Call Automations Work
+
+```text
+Call ends → Outcome logged → Automation triggers → SMS or email sent
+```
+
+Automations are triggered by **call outcomes** such as:
+
+- Call connected and completed
+- Appointment booked
+- Lead qualified or unqualified
+- Call unanswered (after retries exhausted)
+- Customer expressed a complaint
+
+---
+
+## Setting Up SMS Follow-Up
+
+1. Go to **Campaigns →** your campaign **→ Post-Call Actions**
+2. Click **Add SMS Action**
+3. Choose a **Trigger Outcome** (e.g., `Appointment Booked`)
+4. Write your SMS message using template variables:
+
+```text
+Hi {{first_name}}, thanks for speaking with us!
+Your appointment is confirmed for {{appointment_date}} at {{appointment_time}}.
+Reply STOP to opt out.
+— Acme Solar
+```
+
+5. Set the **Send Delay** (e.g., `Immediately` or `5 minutes after call ends`)
+6. Save
+
+### Available SMS Variables
+
+| Variable | Description |
+| --- | --- |
+| `{{first_name}}` | Contact's first name |
+| `{{last_name}}` | Contact's last name |
+| `{{phone}}` | Contact's phone number |
+| `{{appointment_date}}` | Booked appointment date |
+| `{{appointment_time}}` | Booked appointment time |
+| `{{agent_name}}` | Name of the AI agent |
+| `{{company_name}}` | Your company name |
+| `{{call_outcome}}` | Outcome code (e.g., QUALIFIED) |
+
+---
+
+## Setting Up Email Follow-Up
+
+1. Go to **Campaigns →** your campaign **→ Post-Call Actions**
+2. Click **Add Email Action**
+3. Set the **Trigger Outcome**
+4. Enter the **From Name** and **Reply-To Email**
+5. Write your **Subject Line** and **Email Body**
+6. Use HTML or the visual editor
+7. Save
+
+<Note>
+  Email follow-ups require a verified sender domain. Go to **Settings → Email** to verify your domain via DNS records.
+</Note>
+
+---
+
+## Sample SMS Templates
+
+**Appointment Confirmation:**
+
+```text
+Hi {{first_name}}, your free solar survey is booked!
+Date: {{appointment_date}} at {{appointment_time}}.
+Our engineer will visit {{property_address}}.
+Questions? Call {{company_phone}}. — Acme Solar
+```
+
+**Brochure for Warm Leads:**
+
+```text
+Hi {{first_name}}, thanks for your interest in Acme Solar.
+Here's our product guide: https://acmesolar.ng/guide
+We'll be in touch soon. — Acme Team
+```
+
+**Missed Call Notification:**
+
+```text
+Hi {{first_name}}, we tried to reach you from Acme Solar but couldn't connect.
+We'll try again tomorrow, or you can call us on {{company_phone}}.
+```
+
+---
+
+## Compliance & Opt-Out
+
+<Warning>
+  All SMS messages must include an **opt-out instruction** (e.g., "Reply STOP to unsubscribe"). Failure to include this may violate NCC and NDPR regulations in Nigeria, and CAN-SPAM / TCPA in the US.
+</Warning>
+
+Indigenius automatically handles opt-out responses:
+
+- If a contact replies **STOP**, they are added to your **Do Not Contact** list
+- Future campaigns exclude opted-out contacts automatically
+
+---
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="CRM Integration" color="#2596be" icon="plug" href="/crm-integration/overview">
+    Log call outcomes and trigger campaigns directly from your CRM.
+  </Card>
+
+  <Card title="Testing Checklist" color="#2596be" icon="list-check" href="/testing/checklist">
+    Verify your SMS and email automations before going live.
+  </Card>
+</CardGroup>
