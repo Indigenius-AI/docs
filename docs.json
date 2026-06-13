@@ -19,18 +19,7 @@
               "index"
             ]
           },
-          {
-            "group": "AgentPro",
-            "pages": [
-              "AgentPro/welcome",
-              "AgentPro/Quickstart",
-              "AgentPro/Usecases",
-              "AgentPro/Webcalling",
-              "AgentPro/CoreModels",
-              "AgentPro/Widget",
-              "AgentPro/Telephony"
-            ]
-          },
+      
           {
             "group": "Quick Start",
             "icon": "rocket",
