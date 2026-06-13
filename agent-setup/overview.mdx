@@ -13,31 +13,6 @@ This section covers everything you need to build a production-ready agent.
 
 ---
 
-## Agent Configuration Checklist
-
-<Steps>
-  <Step title="Name your agent and set its purpose">
-    Give the agent a clear identity so callers and your team know what it does.
-  </Step>
-  <Step title="Write your system prompt">
-    Define how the agent behaves, what it can say, what it should avoid, and how it should handle edge cases.
-  </Step>
-  <Step title="Set up a knowledge base">
-    Upload FAQs, product documentation, or scripts the agent can reference during calls.
-  </Step>
-  <Step title="Configure branching logic">
-    Define decision trees: what happens when a caller says “yes” vs “no”, or asks to speak to a human.
-  </Step>
-  <Step title="Set language preferences">
-    Enable multilingual support and configure primary and fallback language behavior.
-  </Step>
-  <Step title="Configure escalation and fallback">
-    Define what happens when the agent can't handle a request — transfer to a human, send an SMS, or log for follow-up.
-  </Step>
-</Steps>
-
----
-
 ## Creating Your First Agent
 
 1. Log in to the [Indigenius Dashboard](https://agent.indigenius.ai/dashboard)
@@ -45,9 +20,12 @@ This section covers everything you need to build a production-ready agent.
 3. Click **Create Agent** (top right)
 4. Fill in:
    - **Agent Name** — e.g., `Amara - Lead Qualifier`
-   - **Agent Purpose** — one sentence describing the agent's role
-   - **System Prompt** — the full instructions for the agent's behavior
-5. Click **Save Agent**
+   - `Company Name - e.g., ACME lTD`
+   - `Industry - e.g., Chemicals`
+   - `Primary Language - e.g., English`
+   - `Voice Texture - e.g., Female`
+   - `Typical Task - e.g., one detailed description describing the agent's duties`
+5. Click **Create Agent**
 
 <Tip>
   Give your agent a human name and a clear role. Callers respond better to agents with a defined identity (e.g., "Hi, I'm Amara calling from Acme Ltd.").

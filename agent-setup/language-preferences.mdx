@@ -24,6 +24,10 @@ Indigenius currently supports:
 | Pidgin English | `pcm` | Nigerian Pidgin |
 | French | `fr` | Standard and West African French |
 | Spanish | `es` | Latin American and European Spanish |
+| German | `de` | **West Germanic** Language |
+| Arabic | `ar` | Afro-Asiatic Language |
+| Portuguese | `pt` | Indo-European Language |
+| Chinese | `zh` | Sino-Tibetan Language |
 
 <Note>
   Additional languages are added regularly. Contact [support](/support/overview) to request a specific language.
@@ -31,48 +35,13 @@ Indigenius currently supports:
 
 ---
 
-## Configuring Language Settings
+## Configuring Voice Settings
 
-1. Go to **Agents →** open your agent **→ Settings** tab
-2. Under **Language**, set your **Primary Language**
-3. Toggle **Auto-Detect Language** to allow the agent to switch based on the caller's speech
-4. Add **Additional Languages** from the dropdown (up to 5 per agent)
-5. Set a **Fallback Language** — used when detection confidence is low
-6. Click **Save**
-
----
-
-## Language Flow Logic
-
-When **Auto-Detect Language** is enabled:
-
-```text
-Caller speaks → STT detects language → Agent responds in same language
-                              ↓
-               (If confidence < 80%) → Use Fallback Language
-```
-
-### Explicit Language Switch Prompt
-
-You can also instruct the agent to ask the caller for their preferred language at the start of the call:
-
-```text
-Begin every call by saying:
-"Welcome to Acme Solar. You can speak to me in English, Yoruba, or Hausa. Which do you prefer?"
-Then respond in the language the caller chooses for the rest of the call.
-```
-
----
-
-## Language-Specific Greetings
-
-You can define different opening greetings per language in your system prompt:
-
-```text
-If the caller speaks Yoruba, greet them with: "E kaabo! Mo jẹ Amara, oluranlowo AI fun Acme Solar."
-If the caller speaks Hausa, greet them with: "Barka da zuwa! Ni Amara ne, mataimakiyar AI ta Acme Solar."
-Otherwise, greet in English.
-```
+1. Go to **Voices** 
+2. Select **Provider** e.g., indigenius v 0.5
+3. Select **Model** e.g., multilingual\_v2
+4. Select **Voice** e.g.,  Kaffy | Female | English 
+5. Click **Save** to complete
 
 ---
 
@@ -95,6 +64,6 @@ Otherwise, greet in English.
 
 ## What's Next?
 
-<Card title="Escalation & Fallback" color="#2596be" icon="arrow-up-right-dots" href="/agent-setup/escalation">
-  Define agent behaviour when it can't handle a request.
+<Card title="Phone Setup" color="#2596be" icon="phone" href="/agent-setup/escalation">
+  Purchase, configure, and manage phone numbers for your Indigenius AI agents.
 </Card>

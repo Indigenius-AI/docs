@@ -36,8 +36,7 @@
               "agent-setup/prompt-structure",
               "agent-setup/knowledge-base",
               "agent-setup/branching-logic",
-              "agent-setup/language-preferences",
-              "agent-setup/escalation"
+              "agent-setup/language-preferences"
             ]
           },
           {
